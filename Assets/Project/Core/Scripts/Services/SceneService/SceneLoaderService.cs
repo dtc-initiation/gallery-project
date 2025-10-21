@@ -24,7 +24,9 @@ namespace Project.Core.Scripts.Services.SceneService {
         private Dictionary<string, SceneGroupData> _sceneGroupLookup;
 
         [Inject]
-        public SceneLoaderService() {}
+        public SceneLoaderService(ISceneInitiatorService sceneInitiatorService) {
+            _sceneInitiatorService = sceneInitiatorService;
+        }
         
         public void InitializeService() {
             InitializeSceneGroupLookup();
