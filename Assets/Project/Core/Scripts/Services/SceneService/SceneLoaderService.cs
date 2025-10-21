@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using ModestTree;
+using Project.Core.Scripts.Services.InitiatorService.Base;
 using Project.Core.Scripts.Services.Logger.Base;
 using Project.Core.Scripts.Services.SceneService.Base;
 using UnityEngine;
@@ -9,6 +10,9 @@ using Zenject;
 
 namespace Project.Core.Scripts.Services.SceneService {
     public class SceneLoaderService : ISceneService {
+        [Header("Scene Initiator Reference")]
+        private ISceneInitiatorService _sceneInitiatorService;
+        
         [Header("Scene Configuration")]
         [SerializeField] private List<SceneGroupData> _sceneGroupData;
         [SerializeField] private float _minimumLoadingTime;
@@ -27,7 +31,7 @@ namespace Project.Core.Scripts.Services.SceneService {
         }
 
         private void InitializeSceneGroupLookup() {
-            _sceneGroupLookup = new();
+            _sceneGroupLookup = new Dictionary<string, SceneGroupData>();
             foreach (var sceneGroupData in _sceneGroupData) {
                 _sceneGroupLookup.Add(sceneGroupData.sceneGroupName,  sceneGroupData);
             }
@@ -50,15 +54,20 @@ namespace Project.Core.Scripts.Services.SceneService {
             return true;
         }
 
+        
         private async Awaitable LoadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
+            _sceneGroupsLoading.Add(sceneGroupName);
             var groupToLoad = _sceneGroupLookup[sceneGroupName];
 
-            foreach (var scene in groupToLoad.sceneList) {
-                await TryLoadScene(scene.ScenePath, cancellationTokenSource);
+            foreach (var sceneData in groupToLoad.sceneList) {
+                await TryLoadScene(sceneData.ScenePath, cancellationTokenSource);
+                await _sceneInitiatorService.InvokeLoadEntryPoint(sceneData,  cancellationTokenSource);
             }
+            _sceneGroupsLoaded.Add(sceneGroupName);
+            _sceneGroupsLoading.Remove(sceneGroupName);
         }
 
-        private async Awaitable<bool> TryLoadScene(string scenePath,  CancellationTokenSource cancellationTokenSource) {
+        private async Awaitable<bool> TryLoadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
             var isSceneLoaded = _scenesLoaded.Contains(scenePath);
             if (isSceneLoaded) {
                 LogService.LogError($"ScenePath : {scenePath} is already loaded");
@@ -85,7 +94,9 @@ namespace Project.Core.Scripts.Services.SceneService {
         
 
         public async Awaitable StartSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
-            // TODO Initiator Service Start
+            foreach (var sceneData in _sceneGroupLookup[sceneGroupName].sceneList) {
+                await _sceneInitiatorService.InvokeStartEntryPoint(sceneData, cancellationTokenSource);
+            }
         }
 
         public async Awaitable<bool> TryUnloadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
@@ -103,14 +114,15 @@ namespace Project.Core.Scripts.Services.SceneService {
             return true;
         }
 
-        public async Awaitable UnLoadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
+        private async Awaitable UnLoadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
             var sceneGroupToUnload = _sceneGroupLookup[sceneGroupName];
-            foreach (var scene in sceneGroupToUnload.sceneList) {
-                await TryUnloadScene(scene.ScenePath, cancellationTokenSource);
+            foreach (var sceneData in sceneGroupToUnload.sceneList) {
+                await _sceneInitiatorService.InvokeUnloadExitPoint(sceneData, cancellationTokenSource);
+                await TryUnloadScene(sceneData.ScenePath, cancellationTokenSource);
             }
         }
 
-        public async Awaitable<bool> TryUnloadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
+        private async Awaitable<bool> TryUnloadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
             var isSceneLoaded = _scenesLoaded.Contains(scenePath);
             if (!isSceneLoaded) {
                 LogService.LogError($"ScenePath : {scenePath} is already unloaded");
@@ -125,8 +137,7 @@ namespace Project.Core.Scripts.Services.SceneService {
             return true;
         }
 
-        public async Awaitable UnloadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
-            // TODO initiator Service Exit
+        private async Awaitable UnloadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
             await SceneManager.UnloadSceneAsync(scenePath);
             _scenesLoaded.Remove(scenePath);
         }
