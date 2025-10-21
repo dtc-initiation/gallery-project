@@ -6,13 +6,13 @@ using UnityEngine;
 using Zenject;
 
 namespace Project.Core.Scripts.Services.ApplicationStateMachine {
-    public class ApplicationStateService : IApplicationStateService {
+    public class ApplicationStateMachine : IApplicationStateService {
         private readonly IApplicationState _initialState;
         private IApplicationState _currentState;
         public IApplicationState CurrentState() => _currentState;
 
         [Inject]
-        public ApplicationStateService(IApplicationState initialState) {
+        public ApplicationStateMachine(IApplicationState initialState) {
             _initialState = initialState;
         }
         
