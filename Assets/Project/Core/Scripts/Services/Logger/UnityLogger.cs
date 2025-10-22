@@ -20,17 +20,17 @@ namespace Project.Core.Scripts.Services.Logger {
 
         public override void Log(string message) {
             var coloredMessage = ColorLogLevel(message, LogLevel.Info);
-            Debug.Log(GetTimeStamp() + message);
+            Debug.Log(GetTimeStamp() + coloredMessage);
         }
 
         public override void LogError(string message) {
             var coloredMessage = ColorLogLevel(message, LogLevel.Error);
-            Debug.LogError(GetTimeStamp() + message);
+            Debug.LogError(GetTimeStamp() + coloredMessage);
         }
 
         public override void LogWarning(string message) {
             var coloredMessage = ColorLogLevel(message, LogLevel.Warning);
-            Debug.LogWarning(GetTimeStamp() + message);
+            Debug.LogWarning(GetTimeStamp() + coloredMessage);
         }
 
         public override void LogException(Exception exception) {
@@ -39,7 +39,7 @@ namespace Project.Core.Scripts.Services.Logger {
 
         public override void LogTopic(string message, LogTopic topic = Base.LogTopic.Temp, string callerFilePath = "", string callerMemberName = "") {
             var coloredMessage = ColorLogLevel(message, topic);
-            Debug.Log(GetTimeStamp() + coloredMessage + string.Format(StampFormat, GetCallerName(callerFilePath) + Dot + callerMemberName));
+            Debug.Log(GetTimeStamp() + coloredMessage + " " + string.Format(StampFormat, GetCallerName(callerFilePath) + Dot + callerMemberName));
         }
 
         private string ColorLogLevel(string message, LogLevel level) {

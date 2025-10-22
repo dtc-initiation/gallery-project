@@ -20,7 +20,7 @@ namespace Project.Core.Scripts.Services.SceneService {
         private Dictionary<string, SceneGroupData> _sceneGroupLookup;
 
         [Inject]
-        public SceneLoaderService(ISceneInitiatorService sceneInitiatorService, ISceneDataCollection sceneDataCollection) {
+        public SceneLoaderService(ISceneInitiatorService sceneInitiatorService, SceneDataCollection sceneDataCollection) {
             _sceneInitiatorService = sceneInitiatorService;
             _sceneDataCollections = sceneDataCollection;
         }

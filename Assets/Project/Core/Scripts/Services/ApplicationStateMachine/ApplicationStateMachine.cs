@@ -12,9 +12,7 @@ namespace Project.Core.Scripts.Services.ApplicationStateMachine {
         public IApplicationState CurrentState() => _currentState;
 
         [Inject]
-        public ApplicationStateMachine(IApplicationState initialState) {
-            _initialState = initialState;
-        }
+        public ApplicationStateMachine() { }
         
         
         public async Awaitable EnterInitialGameState(IApplicationState initialState, CancellationTokenSource cancellationTokenSource) {

@@ -20,3 +20,10 @@ MonoBehaviour:
     - sceneReference:
         asset: {fileID: 102900000, guid: 08b6fb4412689304f8d7703963813e20, type: 3}
         guid: 08b6fb4412689304f8d7703963813e20
+  - sceneGroupName: GameScene
+    activeSceneName: GameScene
+    groupType: 1
+    sceneList:
+    - sceneReference:
+        asset: {fileID: 102900000, guid: 7182360f179ac1949b1006c2e976b2c5, type: 3}
+        guid: 7182360f179ac1949b1006c2e976b2c5
