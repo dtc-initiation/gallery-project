@@ -63,6 +63,7 @@ namespace Project.Core.Scripts.Services.SceneService {
                 await TryLoadScene(sceneData.ScenePath, cancellationTokenSource);
                 await _sceneInitiatorService.InvokeLoadEntryPoint(sceneData,  cancellationTokenSource);
             }
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(groupToLoad.activeSceneName));
             _sceneGroupsLoaded.Add(sceneGroupName);
             _sceneGroupsLoading.Remove(sceneGroupName);
         }
