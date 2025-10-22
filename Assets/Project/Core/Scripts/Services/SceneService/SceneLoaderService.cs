@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using ModestTree;
 using Project.Core.Scripts.Services.InitiatorService.Base;
 using Project.Core.Scripts.Services.Logger.Base;
 using Project.Core.Scripts.Services.SceneService.Base;
@@ -15,7 +14,6 @@ namespace Project.Core.Scripts.Services.SceneService {
         
         [Header("Scene Configuration")]
         [SerializeField] private List<SceneGroupData> _sceneGroupData;
-        [SerializeField] private float _minimumLoadingTime;
         
         private readonly HashSet<string> _sceneGroupsLoaded = new();
         private readonly HashSet<string> _sceneGroupsLoading = new();

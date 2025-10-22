@@ -266,6 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 484039736}
   - component: {fileID: 484039737}
+  - component: {fileID: 484039738}
   m_Layer: 0
   m_Name: CoreInstaller
   m_TagString: Untagged
@@ -300,6 +301,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c226bb6268d4eeb8834bf972e10097c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.Bootstrapping.CoreInstaller
+--- !u!114 &484039738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484039735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44d41b9ce014acca944caeff1fcbc34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.CoreInstaller.CoreInitiator
 --- !u!1 &750589035
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Zenject::Zenject.SceneContext
   _scriptableObjectInstallers: []
-  _monoInstallers: []
+  _monoInstallers:
+  - {fileID: 484039737}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -416,7 +430,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
-  - {fileID: 832575519}
   - {fileID: 750589037}
   - {fileID: 484039736}
+  - {fileID: 330585546}
+  - {fileID: 832575519}

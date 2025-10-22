@@ -7,7 +7,7 @@ using UnityEngine;
 using Zenject;
 
 namespace Project.Core.Scripts.CoreInstaller {
-    public class CoreInitiator : MonoBehaviour{
+    public class CoreInitiator : MonoBehaviour {
         ISceneService _sceneLoaderService;
 
         [Inject]

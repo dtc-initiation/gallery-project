@@ -9,11 +9,11 @@ namespace Project.Core.Scripts.Services.InitiatorService {
         private readonly Dictionary<string, ISceneInitiator> _sceneInitiators = new Dictionary<string, ISceneInitiator>();
         
         public void RegisterInitator(ISceneInitiator sceneInitiator) {
-            _sceneInitiators.Add(sceneInitiator.SceneData.SceneName, sceneInitiator);
+            _sceneInitiators.Add(sceneInitiator.SceneName, sceneInitiator);
         }
 
         public void UnregisterInitator(ISceneInitiator sceneInitiator) {
-            _sceneInitiators.Remove(sceneInitiator.SceneData.SceneName);
+            _sceneInitiators.Remove(sceneInitiator.SceneName);
         }
 
         public async Awaitable InvokeLoadEntryPoint(SceneData sceneData, CancellationTokenSource cancellationTokenSource) {
