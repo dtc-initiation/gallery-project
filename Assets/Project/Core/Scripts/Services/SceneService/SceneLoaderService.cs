@@ -11,9 +11,7 @@ namespace Project.Core.Scripts.Services.SceneService {
     public class SceneLoaderService : ISceneService {
         [Header("Scene Initiator Reference")]
         private ISceneInitiatorService _sceneInitiatorService;
-        
-        [Header("Scene Configuration")]
-        [SerializeField] private List<SceneGroupData> _sceneGroupData;
+        private ISceneDataCollection _sceneDataCollections;
         
         private readonly HashSet<string> _sceneGroupsLoaded = new();
         private readonly HashSet<string> _sceneGroupsLoading = new();
@@ -22,8 +20,9 @@ namespace Project.Core.Scripts.Services.SceneService {
         private Dictionary<string, SceneGroupData> _sceneGroupLookup;
 
         [Inject]
-        public SceneLoaderService(ISceneInitiatorService sceneInitiatorService) {
+        public SceneLoaderService(ISceneInitiatorService sceneInitiatorService, ISceneDataCollection sceneDataCollection) {
             _sceneInitiatorService = sceneInitiatorService;
+            _sceneDataCollections = sceneDataCollection;
         }
         
         public void InitializeService() {
@@ -32,7 +31,8 @@ namespace Project.Core.Scripts.Services.SceneService {
 
         private void InitializeSceneGroupLookup() {
             _sceneGroupLookup = new Dictionary<string, SceneGroupData>();
-            foreach (var sceneGroupData in _sceneGroupData) {
+            var sceneList = _sceneDataCollections.SceneList;
+            foreach (var sceneGroupData in sceneList) {
                 _sceneGroupLookup.Add(sceneGroupData.sceneGroupName,  sceneGroupData);
             }
         }
