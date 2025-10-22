@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c226bb6268d4eeb8834bf972e10097c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.Bootstrapping.CoreInstaller
+  sceneDataCollection: {fileID: 11400000, guid: d4045c92b86ef3f42b5180eb38c15422, type: 2}
 --- !u!114 &484039738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,7 +743,7 @@ RenderTexture:
   m_TextureSettings:
     serializedVersion: 2
     m_FilterMode: 0
-    m_Aniso: 1
+    m_Aniso: 0
     m_MipBias: 0
     m_WrapU: 1
     m_WrapV: 1
