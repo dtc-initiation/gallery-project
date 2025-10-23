@@ -1049,6 +1049,9 @@ MonoBehaviour:
   - cam: {fileID: 330585545}
     lastCam: {fileID: 330585545}
     mirrorOnRenderImageOpaque: {fileID: 0}
+  - cam: {fileID: 0}
+    lastCam: {fileID: 0}
+    mirrorOnRenderImageOpaque: {fileID: 0}
   rendererFeatures:
   - {fileID: 5620338975615696023, guid: 65bc7dbf4170f435aa868c779acfb082, type: 2}
   - {fileID: 6507520642032438324, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
