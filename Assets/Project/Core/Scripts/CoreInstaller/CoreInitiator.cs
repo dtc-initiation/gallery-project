@@ -8,11 +8,13 @@ using Zenject;
 
 namespace Project.Core.Scripts.CoreInstaller {
     public class CoreInitiator : MonoBehaviour {
-        ISceneService _sceneLoaderService;
+        private ISceneService _sceneLoaderService;
+        private SceneDataCollection _sceneDataCollection;
 
         [Inject]
-        private void Setup(ISceneService sceneLoaderService) {
+        private void Setup(ISceneService sceneLoaderService, SceneDataCollection sceneDataCollection) {
             _sceneLoaderService = sceneLoaderService;
+            _sceneDataCollection = sceneDataCollection;
         }
 
         private void Start() {
@@ -32,11 +34,12 @@ namespace Project.Core.Scripts.CoreInstaller {
         }
 
         private void InitializeServices() {
+            _sceneDataCollection.InitializeService();
             _sceneLoaderService.InitializeService();
         }
 
         private async Awaitable LoadGameScene(CancellationTokenSource cancellationTokenSource) {
-            await _sceneLoaderService.TryLoadSceneGroup("GameScene", cancellationTokenSource);
+            await _sceneLoaderService.TryLoadSceneGroup(SceneGroupType.Game, cancellationTokenSource);
         }
         
     }

@@ -13,11 +13,10 @@ namespace Project.Core.Scripts.Services.SceneService {
         private ISceneInitiatorService _sceneInitiatorService;
         private ISceneDataCollection _sceneDataCollections;
         
-        private readonly HashSet<string> _sceneGroupsLoaded = new();
-        private readonly HashSet<string> _sceneGroupsLoading = new();
-        private readonly HashSet<string> _scenesLoaded = new();
-        private readonly HashSet<string> _scenesLoading = new();
-        private Dictionary<string, SceneGroupData> _sceneGroupLookup;
+        private readonly HashSet<SceneGroupType> _loadedSceneGroups = new();
+        private readonly HashSet<SceneGroupType> _loadingSceneGroups = new();
+        private readonly HashSet<string> _loadedScenes = new();
+        private readonly HashSet<string> _loadingScenes = new();
 
         [Inject]
         public SceneLoaderService(ISceneInitiatorService sceneInitiatorService, SceneDataCollection sceneDataCollection) {
@@ -26,56 +25,58 @@ namespace Project.Core.Scripts.Services.SceneService {
         }
         
         public void InitializeService() {
-            InitializeSceneGroupLookup();
+            AddOpenedScenesToLoadedHashSet();
         }
 
-        private void InitializeSceneGroupLookup() {
-            _sceneGroupLookup = new Dictionary<string, SceneGroupData>();
-            var sceneList = _sceneDataCollections.SceneList;
-            foreach (var sceneGroupData in sceneList) {
-                _sceneGroupLookup.Add(sceneGroupData.sceneGroupName,  sceneGroupData);
+        private void AddOpenedScenesToLoadedHashSet() {
+            var countLoaded = SceneManager.sceneCount;
+            for (var i = 0; i < countLoaded; i++) {
+                var scenePath = SceneManager.GetSceneAt(i).path;
+                if (!_loadedScenes.Contains(scenePath)) {
+                    _loadedScenes.Add(scenePath);
+                }
             }
         }
 
-        public async Awaitable<bool> TryLoadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
-            var isGroupAlreadyLoaded = _sceneGroupsLoaded.Contains(sceneGroupName);
+        public async Awaitable<bool> TryLoadSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
+            var isGroupAlreadyLoaded = _loadedSceneGroups.Contains(sceneGroupType);
             if (isGroupAlreadyLoaded) {
-                LogService.LogError($"SceneGroup : {sceneGroupName} is already loaded");
+                LogService.LogError($"SceneGroup : {sceneGroupType} is already loaded");
                 return false;
             }
             
-            var isGroupAlreadyLoading = _sceneGroupsLoading.Contains(sceneGroupName);
+            var isGroupAlreadyLoading = _loadingSceneGroups.Contains(sceneGroupType);
             if (isGroupAlreadyLoading) {
-                LogService.LogError($"SceneGroup : {sceneGroupName} is already loading");
+                LogService.LogError($"SceneGroup : {sceneGroupType} is already loading");
                 return false;
             }
 
-            await LoadSceneGroup(sceneGroupName, cancellationTokenSource);
+            await LoadSceneGroup(sceneGroupType, cancellationTokenSource);
             return true;
         }
 
         
-        private async Awaitable LoadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
-            _sceneGroupsLoading.Add(sceneGroupName);
-            var groupToLoad = _sceneGroupLookup[sceneGroupName];
+        private async Awaitable LoadSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
+            _loadingSceneGroups.Add(sceneGroupType);
+            var groupToLoad = _sceneDataCollections.GetSceneGroupByType(sceneGroupType);
 
             foreach (var sceneData in groupToLoad.sceneList) {
                 await TryLoadScene(sceneData.ScenePath, cancellationTokenSource);
                 await _sceneInitiatorService.InvokeLoadEntryPoint(sceneData,  cancellationTokenSource);
             }
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(groupToLoad.activeSceneName));
-            _sceneGroupsLoaded.Add(sceneGroupName);
-            _sceneGroupsLoading.Remove(sceneGroupName);
+            _loadedSceneGroups.Add(sceneGroupType);
+            _loadingSceneGroups.Remove(sceneGroupType);
         }
 
         private async Awaitable<bool> TryLoadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
-            var isSceneLoaded = _scenesLoaded.Contains(scenePath);
+            var isSceneLoaded = _loadedScenes.Contains(scenePath);
             if (isSceneLoaded) {
                 LogService.LogError($"ScenePath : {scenePath} is already loaded");
                 return false;
             }
             
-            var isSceneLoading = _scenesLoading.Contains(scenePath);
+            var isSceneLoading = _loadingScenes.Contains(scenePath);
             if (isSceneLoading) {
                 LogService.LogError($"ScenePath : {scenePath} is already loading");
                 return false;
@@ -85,38 +86,39 @@ namespace Project.Core.Scripts.Services.SceneService {
         }
 
         private async Awaitable LoadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
-            _scenesLoading.Add(scenePath);
+            _loadingScenes.Add(scenePath);
             cancellationTokenSource.Token.ThrowIfCancellationRequested();
             await SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Additive);
             cancellationTokenSource.Token.ThrowIfCancellationRequested();
-            _scenesLoading.Remove(scenePath);
-            _scenesLoaded.Add(scenePath);
+            _loadingScenes.Remove(scenePath);
+            _loadedScenes.Add(scenePath);
         }
         
 
-        public async Awaitable StartSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
-            foreach (var sceneData in _sceneGroupLookup[sceneGroupName].sceneList) {
+        public async Awaitable StartSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
+            var groupToStart = _sceneDataCollections.GetSceneGroupByType(sceneGroupType);
+            foreach (var sceneData in groupToStart.sceneList) {
                 await _sceneInitiatorService.InvokeStartEntryPoint(sceneData, cancellationTokenSource);
             }
         }
 
-        public async Awaitable<bool> TryUnloadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
-            var isSceneGroupUnloaded = _sceneGroupsLoaded.Contains(sceneGroupName);
+        public async Awaitable<bool> TryUnloadSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
+            var isSceneGroupUnloaded = _loadedSceneGroups.Contains(sceneGroupType);
             if (!isSceneGroupUnloaded) {
-                LogService.LogError($"SceneGroup : {sceneGroupName} is already unloaded");
+                LogService.LogError($"SceneGroup : {sceneGroupType} is already unloaded");
                 return false;
             }
-            var isSceneGroupUnLoading = _sceneGroupsLoading.Contains(sceneGroupName);
+            var isSceneGroupUnLoading = _loadingSceneGroups.Contains(sceneGroupType);
             if (!isSceneGroupUnLoading) {
-                LogService.LogError($"SceneGroup : {sceneGroupName} is unloading");
+                LogService.LogError($"SceneGroup : {sceneGroupType} is unloading");
                 return false;
             }
-            await UnLoadSceneGroup(sceneGroupName, cancellationTokenSource);
+            await UnLoadSceneGroup(sceneGroupType, cancellationTokenSource);
             return true;
         }
 
-        private async Awaitable UnLoadSceneGroup(string sceneGroupName, CancellationTokenSource cancellationTokenSource) {
-            var sceneGroupToUnload = _sceneGroupLookup[sceneGroupName];
+        private async Awaitable UnLoadSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
+            var sceneGroupToUnload = _sceneDataCollections.GetSceneGroupByType(sceneGroupType);
             foreach (var sceneData in sceneGroupToUnload.sceneList) {
                 await _sceneInitiatorService.InvokeUnloadExitPoint(sceneData, cancellationTokenSource);
                 await TryUnloadScene(sceneData.ScenePath, cancellationTokenSource);
@@ -124,12 +126,12 @@ namespace Project.Core.Scripts.Services.SceneService {
         }
 
         private async Awaitable<bool> TryUnloadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
-            var isSceneLoaded = _scenesLoaded.Contains(scenePath);
+            var isSceneLoaded = _loadedScenes.Contains(scenePath);
             if (!isSceneLoaded) {
                 LogService.LogError($"ScenePath : {scenePath} is already unloaded");
                 return false;
             }
-            var isSceneUnLoading = _scenesLoading.Contains(scenePath);
+            var isSceneUnLoading = _loadingScenes.Contains(scenePath);
             if (isSceneUnLoading) {
                 LogService.LogError($"ScenePath : {scenePath} is unloading");
                 return false;
@@ -140,7 +142,7 @@ namespace Project.Core.Scripts.Services.SceneService {
 
         private async Awaitable UnloadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
             await SceneManager.UnloadSceneAsync(scenePath);
-            _scenesLoaded.Remove(scenePath);
+            _loadedScenes.Remove(scenePath);
         }
         
     }

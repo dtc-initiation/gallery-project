@@ -1,32 +1,42 @@
 ﻿using System.Threading;
 using Project.Core.Game.Scripts.States;
+using Project.Core.Scripts.Services.ApplicationStateMachine;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
 using Project.Core.Scripts.Services.InitiatorService.Base;
 using Project.Core.Scripts.Services.SceneService.Base;
 using Project.Core.Scripts.Utils;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
 namespace Project.Core.Game.Scripts.GameInitiator {
-    public class GameInitiator : ISceneInitiator, IGameInitiator{
+    public class GameInitiator : ISceneInitiator, IGameInitiator {
         private readonly ISceneInitiatorService _sceneInitiator;
-        private readonly MainMenuState.Factory _mainMenuStateFactory;
         private readonly IApplicationStateService _applicationStateMachine;
-        private const string _sceneName = "GameScene";
-        
-        public string SceneName => _sceneName;
+        private readonly InitialStateConfig _initialStateConfig;
+        private readonly MainMenuState.Factory _mainMenuStateFactory;
+
+        public string SceneName => "GameScene";
+
 
         [Inject]
-        public GameInitiator(IApplicationStateService stateMachine, MainMenuState.Factory mainMenuStateFactory, ISceneInitiatorService sceneInitiator) {
+        public GameInitiator(
+            IApplicationStateService stateMachine,
+            ISceneInitiatorService sceneInitiator,
+            InitialStateConfig initialStateConfig,
+            MainMenuState.Factory mainMenuStateFactory
+        ) {
             _applicationStateMachine = stateMachine;
-            _mainMenuStateFactory = mainMenuStateFactory;
             _sceneInitiator = sceneInitiator;
+            _initialStateConfig = initialStateConfig;
+            _mainMenuStateFactory = mainMenuStateFactory;
             _sceneInitiator.RegisterInitator(this);
         }
-        
+
+
         public async Awaitable LoadEntryPoint(CancellationTokenSource cancellationTokenSource) {
-            // TODO loading screen slider
-            await _applicationStateMachine.EnterInitialGameState(_mainMenuStateFactory.Create(), cancellationTokenSource);
+            IApplicationState initialState = ResolveInitialState();
+            await _applicationStateMachine.EnterInitialGameState(initialState, cancellationTokenSource);
         }
 
         public Awaitable StartEntryPoint(CancellationTokenSource cancellationTokenSource) {
@@ -37,5 +47,13 @@ namespace Project.Core.Game.Scripts.GameInitiator {
             _sceneInitiator.UnregisterInitator(this);
             return AwaitableUtils.CompletedTask;
         }
+
+        private IApplicationState ResolveInitialState() {
+            return _initialStateConfig.initialStateType switch {
+                ApplicationStateType.MainMenu => _mainMenuStateFactory.Create(),
+                _ => _mainMenuStateFactory.Create()
+            };
+        }
+
     }
 }

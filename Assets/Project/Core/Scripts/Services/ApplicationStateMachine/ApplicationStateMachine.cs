@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Project.Core.Scripts.Services.ApplicationStateMachine {
     public class ApplicationStateMachine : IApplicationStateService {
-        private readonly IApplicationState _initialState;
+        private IApplicationState _initialState;
         private IApplicationState _currentState;
         public IApplicationState CurrentState() => _currentState;
 
@@ -16,6 +16,7 @@ namespace Project.Core.Scripts.Services.ApplicationStateMachine {
         
         
         public async Awaitable EnterInitialGameState(IApplicationState initialState, CancellationTokenSource cancellationTokenSource) {
+            _initialState = initialState;
             await _initialState.LoadState(cancellationTokenSource);
             await _initialState.StartState(cancellationTokenSource);
         }
