@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
+using Project.Core.Scripts.Services.CommandFactory.Base;
 using Project.Core.Scripts.Services.InitiatorService.Base;
 using Project.Core.Scripts.Services.Logger.Base;
 using Project.Core.Scripts.Services.SceneService.Base;
@@ -9,10 +10,22 @@ using Zenject;
 
 namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator {
     public class MainMenuInitiator : ISceneInitiator, IMainMenuInitiator {
-        public string SceneName => "MainMenu";
+        private readonly ICommandFactory _commandFactory;
+        private readonly ISceneInitiatorService _sceneInitiatorService;
+        private readonly IApplicationStateService _applicationStateService;
+        public string SceneName => "MainMenuScene";
 
         [Inject]
-        public MainMenuInitiator(IApplicationStateService applicationStateService) {}
+        public MainMenuInitiator(
+            ICommandFactory commandFactory,
+            ISceneInitiatorService sceneInitiatorService,
+            IApplicationStateService applicationStateService
+        ) {
+            _commandFactory = commandFactory;
+            _sceneInitiatorService = sceneInitiatorService;
+            _applicationStateService = applicationStateService;
+            _sceneInitiatorService.RegisterInitator(this);
+        }
         
         public Awaitable LoadEntryPoint(CancellationTokenSource cancellationTokenSource) {
             return AwaitableUtils.CompletedTask;
@@ -23,6 +36,7 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator {
         }
 
         public Awaitable UnloadExitPoint(CancellationTokenSource cancellationTokenSource) {
+            _sceneInitiatorService.UnregisterInitator(this);
             return AwaitableUtils.CompletedTask;
         }
     }

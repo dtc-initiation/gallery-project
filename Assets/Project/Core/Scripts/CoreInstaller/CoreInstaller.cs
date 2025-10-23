@@ -1,4 +1,5 @@
 ﻿using Project.Core.Scripts.Services.ApplicationStateMachine;
+using Project.Core.Scripts.Services.CommandFactory;
 using Project.Core.Scripts.Services.InitiatorService;
 using Project.Core.Scripts.Services.Logger;
 using Project.Core.Scripts.Services.SceneService;
@@ -16,6 +17,7 @@ namespace Project.Core.Scripts.CoreInstaller {
             Container.BindInterfacesTo<SceneLoaderService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SceneInitiatorService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<ApplicationStateMachine>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<CommandFactory>().AsSingle().NonLazy();
             Container.Bind<SceneDataCollection>().FromInstance(sceneDataCollection).AsSingle().NonLazy();
         }
     }

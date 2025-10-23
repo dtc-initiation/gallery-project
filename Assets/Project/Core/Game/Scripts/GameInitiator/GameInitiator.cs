@@ -36,12 +36,7 @@ namespace Project.Core.Game.Scripts.GameInitiator {
 
 
         public async Awaitable LoadEntryPoint(CancellationTokenSource cancellationTokenSource) {
-            LogService.LogTopic("GameInitiator LoadEntryPoint");
-            LogService.LogTopic($"InitialStateConfig : {_initialStateConfig}");
-            LogService.LogTopic($"Current Initial State : {_initialStateConfig.initialStateType}");
             IApplicationState initialState = ResolveInitialState();
-            
-            LogService.LogTopic("GameInitiator Entering InitialState");
             await _applicationStateMachine.EnterInitialGameState(initialState, cancellationTokenSource);
         }
 
@@ -55,7 +50,6 @@ namespace Project.Core.Game.Scripts.GameInitiator {
         }
 
         private IApplicationState ResolveInitialState() {
-            LogService.LogTopic("GameInitiator resolving initialState");
             return _initialStateConfig.initialStateType switch {
                 ApplicationStateType.MainMenu => _mainMenuStateFactory.Create(),
                 _ => _mainMenuStateFactory.Create()
