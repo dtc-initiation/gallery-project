@@ -12,9 +12,8 @@ namespace Project.Core.Game.Scripts.GameInitiator {
         private readonly ISceneInitiatorService _sceneInitiator;
         private readonly MainMenuState.Factory _mainMenuStateFactory;
         private readonly IApplicationStateService _applicationStateMachine;
-        private const string _sceneName = "GameScene";
+        public string SceneName => "GameScene";
         
-        public string SceneName => _sceneName;
 
         [Inject]
         public GameInitiator(IApplicationStateService stateMachine, MainMenuState.Factory mainMenuStateFactory, ISceneInitiatorService sceneInitiator) {
@@ -23,7 +22,8 @@ namespace Project.Core.Game.Scripts.GameInitiator {
             _sceneInitiator = sceneInitiator;
             _sceneInitiator.RegisterInitator(this);
         }
-        
+
+
         public async Awaitable LoadEntryPoint(CancellationTokenSource cancellationTokenSource) {
             // TODO loading screen slider
             await _applicationStateMachine.EnterInitialGameState(_mainMenuStateFactory.Create(), cancellationTokenSource);
@@ -37,5 +37,7 @@ namespace Project.Core.Game.Scripts.GameInitiator {
             _sceneInitiator.UnregisterInitator(this);
             return AwaitableUtils.CompletedTask;
         }
+
+        
     }
 }
