@@ -16,7 +16,7 @@ namespace Project.Core.Scripts.CoreInstaller {
             Container.BindInterfacesTo<SceneLoaderService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SceneInitiatorService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<ApplicationStateMachine>().AsSingle().NonLazy();
-            Container.Bind<SceneDataCollection>().FromNewScriptableObject(sceneDataCollection).AsSingle().NonLazy();
+            Container.Bind<SceneDataCollection>().FromInstance(sceneDataCollection).AsSingle().NonLazy();
         }
     }
 }

@@ -9,8 +9,7 @@ namespace Project.Core.Game.Scripts.GameInitiator {
         
         public override void InstallBindings() {
             Container.Bind<IGameInitiator>().To<GameInitiator>().AsSingle().NonLazy();
-            Container.Bind<InitialStateConfig>().FromScriptableObject(_initialStateConfig).AsSingle().NonLazy();
-            
+            Container.Bind<InitialStateConfig>().FromInstance(_initialStateConfig).AsSingle().NonLazy();
             Container.BindFactory<MainMenuState, MainMenuState.Factory>();
         }
     }

@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70412b5a9d74d57812c8bc932211d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Game.Scripts.GameInitiator.GameInstaller
+  _initialStateConfig: {fileID: 11400000, guid: 4020047dd1536f64c9ff9cd1613634ae, type: 2}
 --- !u!4 &2121895042
 Transform:
   m_ObjectHideFlags: 0

@@ -7,10 +7,14 @@ using Zenject;
 
 namespace Project.Core.Game.Scripts.States {
     public class MainMenuState : BaseApplicationState {
-        private readonly SceneLoaderService  _sceneLoaderService;
+        private readonly ISceneService  _sceneLoaderService;
         public override SceneGroupType SceneGroupType => SceneGroupType.MainMenu;
         public override ApplicationStateType ApplicationStateType => ApplicationStateType.MainMenu;
 
+        public MainMenuState(ISceneService sceneLoaderService) {
+            _sceneLoaderService = sceneLoaderService;
+        }
+        
         public override async Awaitable LoadState(CancellationTokenSource cancellationTokenSource) {
             await base.LoadState(cancellationTokenSource);
             await _sceneLoaderService.TryLoadSceneGroup(SceneGroupType, cancellationTokenSource);
