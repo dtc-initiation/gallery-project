@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Project.Core.Scripts.Services.SceneService.Base {
-    [CreateAssetMenu(fileName = "SceneDataCollection", menuName = "SceneDataCollection")]
+    [CreateAssetMenu(fileName = "SceneDataCollection", menuName = "Core/Services/SceneDataCollection")]
     public class SceneDataCollection : ScriptableObject, ISceneDataCollection {
         [SerializeField] private List<SceneGroupData> sceneList = new ();
 
