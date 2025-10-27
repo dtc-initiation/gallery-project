@@ -10,13 +10,13 @@ namespace Project.Core.Scripts.Mvc.WorldCamera {
         [SerializeField] private CinemachineRotationComposer rotationComposer;
 
         [Header("Camera Settings")] 
-        // [SerializeField] private Vector3 followPositionDamping;
-        // [SerializeField] private Vector3 followOffset;
+        [SerializeField] private Vector3 followOffset;
         [SerializeField] private Vector3 rotationTargetOffset;
         [SerializeField] private Vector2 rotationTargetDamping;
         
         public void SetPositionRelativeToTarget(Transform target) {
             virtualCamera.Follow = target;
+            follow.FollowOffset = followOffset;
             rotationComposer.TargetOffset = rotationTargetOffset;
             rotationComposer.Damping = rotationTargetDamping;
         }
