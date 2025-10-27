@@ -203,9 +203,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3437437245162541923, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
-    - {fileID: 5079909170360419636, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
+    - target: {fileID: 7987991166018421385, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
+      propertyPath: Damping.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987991166018421385, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
+      propertyPath: Damping.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784120940224883099, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
+      propertyPath: TrackerSettings.BindingMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784120940224883099, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784120940224883099, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784120940224883099, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.z
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -292,8 +314,9 @@ MonoBehaviour:
   virtualCamera: {fileID: 401865131}
   follow: {fileID: 401865130}
   rotationComposer: {fileID: 401865129}
-  rotationTargetOffset: {x: 5, y: 5, z: 5}
-  rotationTargetDamping: {x: 5, y: 5}
+  followOffset: {x: 0, y: 100, z: 100}
+  rotationTargetOffset: {x: 0, y: 0, z: 0}
+  rotationTargetDamping: {x: 0, y: 0}
 --- !u!1 &484039735
 GameObject:
   m_ObjectHideFlags: 0
