@@ -6,15 +6,15 @@ using Zenject;
 
 namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
     public class LobbyButtonController : ILobbyButtonsController {
-        private IApplicationStateService _applicationStateService;
+        private readonly IApplicationStateService _applicationStateService;
         private readonly LobbyButtonView _lobbyButtonView;
         private readonly GamePlayState.Factory  _gamePlayStateFactory;
 
 
         [Inject]
-        public LobbyButtonController(IApplicationStateService applicationStateService, LobbyButtonView lobbyButtonView, GamePlayState.Factory gamePlayStateFactory) {
-            _applicationStateService = applicationStateService;
+        public LobbyButtonController(LobbyButtonView lobbyButtonView, IApplicationStateService applicationStateService, GamePlayState.Factory gamePlayStateFactory) {
             _lobbyButtonView = lobbyButtonView;
+            _applicationStateService = applicationStateService;
             _gamePlayStateFactory = gamePlayStateFactory;
         }
         

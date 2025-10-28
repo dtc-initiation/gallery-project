@@ -499,6 +499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b62b6873b745e4be9935beee707348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator.MainMenuInstaller
+  lobbyCanvasView: {fileID: 1122648078}
+  lobbyButtonView: {fileID: 843997692}
 --- !u!4 &958210390
 Transform:
   m_ObjectHideFlags: 0

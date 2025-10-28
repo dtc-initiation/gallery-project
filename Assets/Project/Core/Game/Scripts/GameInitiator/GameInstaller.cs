@@ -11,6 +11,7 @@ namespace Project.Core.Game.Scripts.GameInitiator {
             Container.Bind<IGameInitiator>().To<GameInitiator>().AsSingle().NonLazy();
             Container.Bind<InitialStateConfig>().FromInstance(_initialStateConfig).AsSingle().NonLazy();
             Container.BindFactory<LobbyState, LobbyState.Factory>();
+            Container.BindFactory<GamePlayState, GamePlayState.Factory>();
         }
     }
 }
