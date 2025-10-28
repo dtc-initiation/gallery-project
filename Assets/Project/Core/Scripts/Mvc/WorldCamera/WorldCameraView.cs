@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Project.Core.Scripts.Mvc.WorldCamera {
     public class WorldCameraView : MonoBehaviour {
-        [Header("Virtual Camera Components")]        
+        [Header("Virtual Camera Components")] 
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private CinemachineCamera virtualCamera;
         [SerializeField] private CinemachineFollow follow;
         [SerializeField] private CinemachineRotationComposer rotationComposer;
