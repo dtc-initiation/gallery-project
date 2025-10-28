@@ -1,4 +1,4 @@
-﻿using Project.Core.Scripts.Mvc.UICamera;
+﻿using Project.Core.Game.Scripts.Mvc.UICamera;
 
 namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc {
     public class LobbyCanvasController : ILobbyCanvasController{

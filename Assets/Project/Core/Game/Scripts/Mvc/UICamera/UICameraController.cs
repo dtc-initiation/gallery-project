@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Project.Core.Scripts.Mvc.UICamera {
+namespace Project.Core.Game.Scripts.Mvc.UICamera {
     public class UICameraController : IUICameraController {
         private readonly UICameraView _uiCameraView;
         public Camera UICamera => _uiCameraView.Camera;

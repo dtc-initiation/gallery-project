@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Core.Scripts.Mvc.UICamera {
+namespace Project.Core.Game.Scripts.Mvc.UICamera {
     public interface IUICameraController {
         public Camera UICamera { get; }
     }
