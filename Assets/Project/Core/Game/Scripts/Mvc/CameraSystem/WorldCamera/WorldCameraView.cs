@@ -1,11 +1,10 @@
-﻿using System.Threading;
-using Unity.Cinemachine;
+﻿using Unity.Cinemachine;
 using UnityEngine;
 
-namespace Project.Core.Scripts.Mvc.WorldCamera {
-    public class WorldCameraView : MonoBehaviour {
-        [Header("Virtual Camera Components")] 
-        [SerializeField] private Camera mainCamera;
+namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
+    public class WorldCameraView : MonoBehaviour, ICameraView {
+        [Header("Virtual Camera Components")]
+        [field: SerializeField] public Camera Camera { get; set; }
         [SerializeField] private CinemachineCamera virtualCamera;
         [SerializeField] private CinemachineFollow follow;
         [SerializeField] private CinemachineRotationComposer rotationComposer;
@@ -25,6 +24,7 @@ namespace Project.Core.Scripts.Mvc.WorldCamera {
         public void LookAtTarget(Transform target) {
             virtualCamera.LookAt = target;
         }
+
 
     }
 }

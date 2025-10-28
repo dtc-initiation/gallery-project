@@ -1,6 +1,6 @@
-﻿using Project.Core.Game.Scripts.Mvc.UICamera;
+﻿using Project.Core.Game.Scripts.Mvc.CameraSystem.UICamera;
+using Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera;
 using Project.Core.Game.Scripts.States;
-using Project.Core.Scripts.Mvc.WorldCamera;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
 using UnityEngine;
 using Zenject;

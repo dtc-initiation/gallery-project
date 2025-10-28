@@ -1,11 +1,9 @@
-﻿using System.Threading;
-using Project.Core.Game.Scripts.Mvc.WorldCamera;
-using Project.Core.Scripts.Services.Logger.Base;
+﻿using Project.Core.Scripts.Services.Logger.Base;
 using Project.Core.Scripts.Services.UpdateSubscriptionManager.Base;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Core.Scripts.Mvc.WorldCamera {
+namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
     public class WorldCameraController : IWorldCameraController, ILateUpdatable {
         private readonly WorldCameraView _worldCameraView;
         private readonly IUpdateSubscriptionService  _updateSubscriptionService;
