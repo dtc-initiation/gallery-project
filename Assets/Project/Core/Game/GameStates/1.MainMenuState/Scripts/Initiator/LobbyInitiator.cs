@@ -9,14 +9,14 @@ using UnityEngine;
 using Zenject;
 
 namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator {
-    public class MainMenuInitiator : ISceneInitiator, IMainMenuInitiator {
+    public class LobbyInitiator : ISceneInitiator, ILobbyInitiator {
         private readonly ICommandFactory _commandFactory;
         private readonly ISceneInitiatorService _sceneInitiatorService;
         private readonly IApplicationStateService _applicationStateService;
         public string SceneName => "MainMenuScene";
 
         [Inject]
-        public MainMenuInitiator(
+        public LobbyInitiator(
             ICommandFactory commandFactory,
             ISceneInitiatorService sceneInitiatorService,
             IApplicationStateService applicationStateService
