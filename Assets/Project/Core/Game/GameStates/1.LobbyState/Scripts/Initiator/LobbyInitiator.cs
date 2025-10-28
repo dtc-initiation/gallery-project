@@ -1,15 +1,13 @@
 ﻿using System.Threading;
-using Project.Core.Game.GameStates._1.MainMenuState.Scripts.Commands;
-using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
+using Project.Core.Game.GameStates._1.LobbyState.Scripts.Commands;
+using Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator;
 using Project.Core.Scripts.Services.CommandFactory.Base;
 using Project.Core.Scripts.Services.InitiatorService.Base;
-using Project.Core.Scripts.Services.Logger.Base;
-using Project.Core.Scripts.Services.SceneService.Base;
 using Project.Core.Scripts.Utils;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator {
+namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Initiator {
     public class LobbyInitiator : ISceneInitiator, ILobbyInitiator {
         private readonly ICommandFactory _commandFactory;
         private readonly ISceneInitiatorService _sceneInitiatorService;
