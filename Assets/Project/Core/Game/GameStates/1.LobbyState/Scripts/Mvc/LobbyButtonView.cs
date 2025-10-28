@@ -22,7 +22,7 @@ namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc {
             button.onClick.AddListener(OnClick);
         }
 
-        private void RemoveListeners() {
+        public void RemoveListeners() {
             button.onClick.RemoveListener(OnClick);
         }
 

@@ -13,13 +13,6 @@ MonoBehaviour:
   m_Name: SceneDataCollection
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.Services.SceneService.Base.SceneDataCollectionCollection
   sceneList:
-  - sceneGroupName: Lobby
-    activeSceneName: LobbyScene
-    groupType: 1
-    sceneList:
-    - sceneReference:
-        asset: {fileID: 102900000, guid: 08b6fb4412689304f8d7703963813e20, type: 3}
-        guid: 08b6fb4412689304f8d7703963813e20
   - sceneGroupName: GameScene
     activeSceneName: GameScene
     groupType: 0
@@ -27,3 +20,17 @@ MonoBehaviour:
     - sceneReference:
         asset: {fileID: 102900000, guid: 7182360f179ac1949b1006c2e976b2c5, type: 3}
         guid: 7182360f179ac1949b1006c2e976b2c5
+  - sceneGroupName: Lobby
+    activeSceneName: LobbyScene
+    groupType: 1
+    sceneList:
+    - sceneReference:
+        asset: {fileID: 102900000, guid: 08b6fb4412689304f8d7703963813e20, type: 3}
+        guid: 08b6fb4412689304f8d7703963813e20
+  - sceneGroupName: GamePlayScene
+    activeSceneName: GamePlayScene
+    groupType: 3
+    sceneList:
+    - sceneReference:
+        asset: {fileID: 102900000, guid: c69082a2928ae3745b2720337217e1ae, type: 3}
+        guid: c69082a2928ae3745b2720337217e1ae

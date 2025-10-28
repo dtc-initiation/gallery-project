@@ -24,11 +24,11 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
 
         private void OnStartButtonClicked(ApplicationStateType toState) {
             LogService.LogTopic("Start Game Button Clicked", LogTopic.UI);
-            // _applicationStateService.SwitchState(_gamePlayStateFactory.Create());
+            _applicationStateService.SwitchState(_gamePlayStateFactory.Create());
         }
 
         public void Dispose() {
-            throw new System.NotImplementedException();
+            _lobbyButtonView.RemoveListeners();
         }
     }
 }
