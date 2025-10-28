@@ -91,7 +91,8 @@ namespace Abiogenesis3d
 
         void LateUpdate()
         {
-            if (!uPixelator) uPixelator = GameObject.FindObjectOfType<UPixelator>();
+            // if (!uPixelator) uPixelator = GameObject.FindObjectOfType<UPixelator>();
+            if (!uPixelator) uPixelator = GameObject.FindFirstObjectByType<UPixelator>();
             HandleOwnerCam();
             if (!uPixelator) return;
 

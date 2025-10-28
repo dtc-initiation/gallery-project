@@ -26,7 +26,8 @@ namespace Abiogenesis3d
                 List<Text> texts = new List<Text>();
 
                 if (applyToChildrenOnly) texts.AddRange(GetComponentsInChildren<Text>());
-                else texts.AddRange(FindObjectsOfType<Text>());
+                else texts.AddRange(FindObjectsByType<Text>(FindObjectsSortMode.None));
+                // else texts.AddRange(FindObjectsOfType<Text>());
 
                 foreach (var text in texts)
                 {

@@ -129,7 +129,8 @@ namespace Abiogenesis3d
 
         void EnforceUniqueInstance()
         {
-            var existingInstances = FindObjectsOfType<UPixelator>();
+            // var existingInstances = FindObjectsOfType<UPixelator>();
+            var existingInstances = FindObjectsByType<UPixelator>(FindObjectsSortMode.None);
             if (existingInstances.Length > 1)
             {
                 Debug.Log($"UPixelator: There should only be one active instance in the scene. Deactivating: {name}");
@@ -454,7 +455,8 @@ namespace Abiogenesis3d
         void HandleGetCameras()
         {
             List<Camera> cameras;
-            if (autoDetectCameras) cameras = FindObjectsOfType<Camera>().ToList();
+            // if (autoDetectCameras) cameras = FindObjectsOfType<Camera>().ToList();
+            if (autoDetectCameras) cameras = FindObjectsByType<Camera>(FindObjectsSortMode.None).ToList();
             else
             {
                 cameras = new List<Camera> {};
@@ -855,7 +857,8 @@ namespace Abiogenesis3d
 
         List<UPixelatorSnappable> FillSnappablesList()
         {
-            var snappableArray = GameObject.FindObjectsOfType<UPixelatorSnappable>();
+            // var snappableArray = GameObject.FindObjectsOfType<UPixelatorSnappable>();
+            var snappableArray = GameObject.FindObjectsByType<UPixelatorSnappable>(FindObjectsSortMode.None);
 
             foreach (var snappable in snappableArray)
                 snappable.nested = new List<UPixelatorSnappable>();
