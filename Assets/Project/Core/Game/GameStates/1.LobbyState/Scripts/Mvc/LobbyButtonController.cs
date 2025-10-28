@@ -1,11 +1,8 @@
-﻿using Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc;
-using Project.Core.Game.Scripts.States;
+﻿using Project.Core.Game.Scripts.States;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
 using Project.Core.Scripts.Services.Logger.Base;
-using UnityEngine;
-using Zenject;
 
-namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
+namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc {
     public class LobbyButtonController : ILobbyButtonController {
         private readonly IApplicationStateService _applicationStateService;
         private readonly LobbyButtonView _lobbyButtonView;
