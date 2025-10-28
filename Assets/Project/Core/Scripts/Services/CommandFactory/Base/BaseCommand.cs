@@ -2,7 +2,7 @@
 
 namespace Project.Core.Scripts.Services.CommandFactory.Base {
     public abstract class BaseCommand : IBaseCommand {
-        private DiContainer _diContainer;
+        protected DiContainer _diContainer;
         
         public void SetObjectResolver(DiContainer diContainer) {
             _diContainer = diContainer;
