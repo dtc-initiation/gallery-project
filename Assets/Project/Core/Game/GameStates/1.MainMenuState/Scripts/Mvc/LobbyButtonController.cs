@@ -18,8 +18,7 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
         }
         
         public void InitializeEntry() {
-            var button = Object.Instantiate(_lobbyButtonView);
-            button.Setup(OnStartButtonClicked, ApplicationStateType.GamePlay);
+            _lobbyButtonView.Setup(OnStartButtonClicked, ApplicationStateType.GamePlay);
         }
 
         private void OnStartButtonClicked(ApplicationStateType toState) {

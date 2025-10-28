@@ -17,6 +17,7 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Commands {
         }
 
         public Awaitable Execute(CancellationTokenSource cancellationTokenSource) {
+            LogService.LogTopic("EnterLobbyStateCommand.Exceute", LogTopic.UI);
             _canvasController.InitializeEntry();
             _buttonController.InitializeEntry();
             return AwaitableUtils.CompletedTask;

@@ -1,5 +1,6 @@
 ﻿using System;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
+using Project.Core.Scripts.Services.Logger.Base;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
