@@ -108,7 +108,7 @@ namespace Project.Core.Scripts.Services.SceneService {
                 return false;
             }
             var isSceneGroupUnLoading = _loadingSceneGroups.Contains(sceneGroupType);
-            if (!isSceneGroupUnLoading) {
+            if (isSceneGroupUnLoading) {
                 LogService.LogError($"SceneGroup : {sceneGroupType} is unloading");
                 return false;
             }

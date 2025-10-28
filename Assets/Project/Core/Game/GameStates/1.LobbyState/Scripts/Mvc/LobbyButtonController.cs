@@ -1,4 +1,5 @@
-﻿using Project.Core.Game.Scripts.States;
+﻿using Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc;
+using Project.Core.Game.Scripts.States;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
 using Project.Core.Scripts.Services.Logger.Base;
 using UnityEngine;
@@ -23,11 +24,11 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
 
         private void OnStartButtonClicked(ApplicationStateType toState) {
             LogService.LogTopic("Start Game Button Clicked", LogTopic.UI);
-            // _applicationStateService.SwitchState(_gamePlayStateFactory.Create());
+            _applicationStateService.SwitchState(_gamePlayStateFactory.Create());
         }
 
         public void Dispose() {
-            throw new System.NotImplementedException();
+            _lobbyButtonView.RemoveListeners();
         }
     }
 }

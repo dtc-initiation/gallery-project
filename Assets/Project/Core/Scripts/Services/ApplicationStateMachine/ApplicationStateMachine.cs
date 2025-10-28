@@ -18,6 +18,7 @@ namespace Project.Core.Scripts.Services.ApplicationStateMachine {
         public async Awaitable EnterInitialGameState(IApplicationState initialState, CancellationTokenSource cancellationTokenSource) {
             LogService.LogTopic("Entering InitialState");
             _initialState = initialState;
+            _currentState = _initialState;
             await _initialState.LoadState(cancellationTokenSource);
             await _initialState.StartState(cancellationTokenSource);
         }
