@@ -8,7 +8,7 @@ using Zenject;
 namespace Project.Core.Game.Scripts.States {
     public class LobbyState : BaseApplicationState {
         private readonly ISceneService  _sceneLoaderService;
-        public override SceneGroupType SceneGroupType => SceneGroupType.MainMenu;
+        public override SceneGroupType SceneGroupType => SceneGroupType.Lobby;
         public override ApplicationStateType ApplicationStateType => ApplicationStateType.Lobby;
 
         public LobbyState(ISceneService sceneLoaderService) {
