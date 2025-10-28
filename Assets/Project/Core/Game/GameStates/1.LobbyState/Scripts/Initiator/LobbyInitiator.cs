@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using Project.Core.Game.GameStates._1.LobbyState.Scripts.Commands;
-using Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator;
 using Project.Core.Scripts.Services.CommandFactory.Base;
 using Project.Core.Scripts.Services.InitiatorService.Base;
 using Project.Core.Scripts.Utils;

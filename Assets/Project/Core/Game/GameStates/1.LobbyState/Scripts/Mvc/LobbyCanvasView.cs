@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
+namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc {
     public class LobbyCanvasView : MonoBehaviour {
         [SerializeField] private Canvas lobbyCanvas;
 

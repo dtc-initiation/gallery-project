@@ -1,4 +1,5 @@
-﻿using Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc;
+﻿using Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc;
+using Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc;
 using Project.Core.Scripts.Services.CommandFactory.Base;
 
 namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Commands {

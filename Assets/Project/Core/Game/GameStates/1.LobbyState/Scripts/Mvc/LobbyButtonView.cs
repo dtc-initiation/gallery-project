@@ -1,11 +1,10 @@
 ﻿using System;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
-using Project.Core.Scripts.Services.Logger.Base;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
+namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc {
     public class LobbyButtonView : MonoBehaviour {
         [SerializeField] private Button button;
         [SerializeField] private TextMeshProUGUI buttonText;
