@@ -15,7 +15,7 @@ namespace Project.Core.Game.Scripts.GameInitiator {
         private readonly ISceneInitiatorService _sceneInitiator;
         private readonly IApplicationStateService _applicationStateMachine;
         private readonly InitialStateConfig _initialStateConfig;
-        private readonly MainMenuState.Factory _mainMenuStateFactory;
+        private readonly LobbyState.Factory _lobbyStateFactory;
 
         public string SceneName => "GameScene";
 
@@ -25,12 +25,12 @@ namespace Project.Core.Game.Scripts.GameInitiator {
             IApplicationStateService stateMachine,
             ISceneInitiatorService sceneInitiator,
             InitialStateConfig initialStateConfig,
-            MainMenuState.Factory mainMenuStateFactory
+            LobbyState.Factory lobbyStateFactory
         ) {
             _applicationStateMachine = stateMachine;
             _sceneInitiator = sceneInitiator;
             _initialStateConfig = initialStateConfig;
-            _mainMenuStateFactory = mainMenuStateFactory;
+            _lobbyStateFactory = lobbyStateFactory;
             _sceneInitiator.RegisterInitator(this);
         }
 
@@ -51,8 +51,8 @@ namespace Project.Core.Game.Scripts.GameInitiator {
 
         private IApplicationState ResolveInitialState() {
             return _initialStateConfig.initialStateType switch {
-                ApplicationStateType.MainMenu => _mainMenuStateFactory.Create(),
-                _ => _mainMenuStateFactory.Create()
+                ApplicationStateType.Lobby => _lobbyStateFactory.Create(),
+                _ => _lobbyStateFactory.Create()
             };
         }
 

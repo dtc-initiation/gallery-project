@@ -13,7 +13,7 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator {
         private readonly ICommandFactory _commandFactory;
         private readonly ISceneInitiatorService _sceneInitiatorService;
         private readonly IApplicationStateService _applicationStateService;
-        public string SceneName => "MainMenuScene";
+        public string SceneName => "LobbyScene";
 
         [Inject]
         public LobbyInitiator(

@@ -6,12 +6,12 @@ using UnityEngine;
 using Zenject;
 
 namespace Project.Core.Game.Scripts.States {
-    public class MainMenuState : BaseApplicationState {
+    public class LobbyState : BaseApplicationState {
         private readonly ISceneService  _sceneLoaderService;
         public override SceneGroupType SceneGroupType => SceneGroupType.MainMenu;
-        public override ApplicationStateType ApplicationStateType => ApplicationStateType.MainMenu;
+        public override ApplicationStateType ApplicationStateType => ApplicationStateType.Lobby;
 
-        public MainMenuState(ISceneService sceneLoaderService) {
+        public LobbyState(ISceneService sceneLoaderService) {
             _sceneLoaderService = sceneLoaderService;
         }
         
@@ -25,7 +25,7 @@ namespace Project.Core.Game.Scripts.States {
             await _sceneLoaderService.TryUnloadSceneGroup(SceneGroupType, cancellationTokenSource);
         }
         
-        public class Factory : PlaceholderFactory<MainMenuState> {}
+        public class Factory : PlaceholderFactory<LobbyState> {}
         
     }
 }

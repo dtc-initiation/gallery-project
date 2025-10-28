@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SceneDataCollection
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.Services.SceneService.Base.SceneDataCollectionCollection
   sceneList:
-  - sceneGroupName: MainMenu
-    activeSceneName: MainMenuScene
+  - sceneGroupName: Lobby
+    activeSceneName: LobbyScene
     groupType: 1
     sceneList:
     - sceneReference:
