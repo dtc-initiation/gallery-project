@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Commands {
     public class ExitLobbyStateCommand : BaseCommand, ICommandVoid {
-        private ILobbyButtonsController _lobbyButtonsController;
+        private ILobbyButtonController _lobbyButtonController;
         
         public override void ResolveDependencies() {
-            _lobbyButtonsController = _diContainer.Resolve<ILobbyButtonsController>();
+            _lobbyButtonController = _diContainer.Resolve<ILobbyButtonController>();
         }
 
         public void Execute() {
-            _lobbyButtonsController.Dispose();
+            _lobbyButtonController.Dispose();
             
         }
 

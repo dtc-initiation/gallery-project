@@ -85,14 +85,12 @@ namespace Project.Core.Scripts.Services.SceneService {
         }
 
         private async Awaitable LoadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
-            LogService.LogTopic($"Loading Individual Scene : {scenePath}");
             _loadingScenes.Add(scenePath);
             cancellationTokenSource.Token.ThrowIfCancellationRequested();
             await SceneManager.LoadSceneAsync(scenePath, LoadSceneMode.Additive);
             cancellationTokenSource.Token.ThrowIfCancellationRequested();
             _loadingScenes.Remove(scenePath);
             _loadedScenes.Add(scenePath);
-            LogService.LogTopic($"Loaded Individual Scene : {scenePath}");
         }
         
 

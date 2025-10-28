@@ -5,13 +5,12 @@ using UnityEngine;
 using Zenject;
 
 namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
-    public class LobbyButtonController : ILobbyButtonsController {
+    public class LobbyButtonController : ILobbyButtonController {
         private readonly IApplicationStateService _applicationStateService;
         private readonly LobbyButtonView _lobbyButtonView;
         private readonly GamePlayState.Factory  _gamePlayStateFactory;
 
 
-        [Inject]
         public LobbyButtonController(LobbyButtonView lobbyButtonView, IApplicationStateService applicationStateService, GamePlayState.Factory gamePlayStateFactory) {
             _lobbyButtonView = lobbyButtonView;
             _applicationStateService = applicationStateService;
@@ -25,7 +24,7 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc {
 
         private void OnStartButtonClicked(ApplicationStateType toState) {
             LogService.LogTopic("Start Game Button Clicked", LogTopic.UI);
-            _applicationStateService.SwitchState(_gamePlayStateFactory.Create());
+            // _applicationStateService.SwitchState(_gamePlayStateFactory.Create());
         }
 
         public void Dispose() {

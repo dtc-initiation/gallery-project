@@ -24,7 +24,7 @@ namespace Project.Core.Scripts.CoreInstaller {
             Container.BindInterfacesTo<SceneLoaderService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SceneInitiatorService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<ApplicationStateMachine>().AsSingle().NonLazy();
-            Container.BindInterfacesTo<CommandFactory>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<CommandFactory>().AsSingle().CopyIntoAllSubContainers().NonLazy();
             Container.Bind<SceneDataCollection>().FromInstance(sceneDataCollection).AsSingle().NonLazy();
             Container.BindInterfacesTo<UpdateSubscriptionService>().FromInstance(updateSubscriptionService).AsSingle().NonLazy();
             Container.BindInterfacesTo<WorldCameraController>().AsSingle().WithArguments(worldCameraView).NonLazy();

@@ -9,8 +9,8 @@ namespace Project.Core.Game.GameStates._1.MainMenuState.Scripts.Initiator {
         
         public override void InstallBindings() {
             Container.Bind<ILobbyInitiator>().To<LobbyInitiator>().AsSingle().NonLazy();
-            Container.BindInterfacesTo<LobbyCanvasController>().AsSingle().WithArguments(lobbyCanvasView).NonLazy();
-            Container.BindInterfacesTo<ILobbyButtonsController>().AsSingle().WithArguments(lobbyButtonView).NonLazy();
+            Container.Bind<ILobbyCanvasController>().To<LobbyCanvasController>().AsSingle().WithArguments(lobbyCanvasView).NonLazy();
+            Container.BindInterfacesTo<LobbyButtonController>().AsSingle().WithArguments(lobbyButtonView).NonLazy();
         }
     }
 }
