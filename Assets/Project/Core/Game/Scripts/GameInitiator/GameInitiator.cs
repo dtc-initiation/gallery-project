@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Project.Core.Game.Scripts.Mvc.CameraSystem.PixelCamera;
 using Project.Core.Game.Scripts.States;
 using Project.Core.Scripts.Services.ApplicationStateMachine;
 using Project.Core.Scripts.Services.ApplicationStateMachine.Base;
@@ -16,6 +17,8 @@ namespace Project.Core.Game.Scripts.GameInitiator {
         private readonly IApplicationStateService _applicationStateMachine;
         private readonly InitialStateConfig _initialStateConfig;
         private readonly LobbyState.Factory _lobbyStateFactory;
+        private readonly GamePlayState.Factory _gamePlayStateFactory;
+        private readonly IPixelCameraController _pixelCameraController;
 
         public string SceneName => "GameScene";
 
@@ -25,22 +28,28 @@ namespace Project.Core.Game.Scripts.GameInitiator {
             IApplicationStateService stateMachine,
             ISceneInitiatorService sceneInitiator,
             InitialStateConfig initialStateConfig,
-            LobbyState.Factory lobbyStateFactory
+            LobbyState.Factory lobbyStateFactory,
+            GamePlayState.Factory gamePlayStateFactory,
+            IPixelCameraController pixelCameraController
         ) {
             _applicationStateMachine = stateMachine;
             _sceneInitiator = sceneInitiator;
             _initialStateConfig = initialStateConfig;
             _lobbyStateFactory = lobbyStateFactory;
+            _gamePlayStateFactory = gamePlayStateFactory;
+            _pixelCameraController = pixelCameraController;
             _sceneInitiator.RegisterInitator(this);
         }
 
 
-        public async Awaitable LoadEntryPoint(CancellationTokenSource cancellationTokenSource) {
+        public Awaitable LoadEntryPoint(CancellationTokenSource cancellationTokenSource) {
             IApplicationState initialState = ResolveInitialState();
-            await _applicationStateMachine.EnterInitialGameState(initialState, cancellationTokenSource);
+            _applicationStateMachine.EnterInitialGameState(initialState, cancellationTokenSource);
+            return AwaitableUtils.CompletedTask;
         }
 
         public Awaitable StartEntryPoint(CancellationTokenSource cancellationTokenSource) {
+            _pixelCameraController.InitializeEntry();
             return AwaitableUtils.CompletedTask;
         }
 
@@ -52,6 +61,7 @@ namespace Project.Core.Game.Scripts.GameInitiator {
         private IApplicationState ResolveInitialState() {
             return _initialStateConfig.initialStateType switch {
                 ApplicationStateType.Lobby => _lobbyStateFactory.Create(),
+                ApplicationStateType.GamePlay => _gamePlayStateFactory.Create(),
                 _ => _lobbyStateFactory.Create()
             };
         }
