@@ -20,7 +20,6 @@ namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc {
         }
 
         private void OnStartButtonClicked(ApplicationStateType toState) {
-            LogService.LogTopic("Start Game Button Clicked", LogTopic.UI);
             _applicationStateService.SwitchState(_gamePlayStateFactory.Create());
         }
 

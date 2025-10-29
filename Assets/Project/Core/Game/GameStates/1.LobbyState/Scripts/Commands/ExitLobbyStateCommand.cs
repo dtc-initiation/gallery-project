@@ -11,7 +11,6 @@ namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Commands {
         }
 
         public void Execute() {
-            LogService.LogError("ExitLobbyStateCommand.Execute()");
             _lobbyButtonController.Dispose();
         }
 

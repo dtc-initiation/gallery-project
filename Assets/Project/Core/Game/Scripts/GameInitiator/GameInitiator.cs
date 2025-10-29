@@ -40,14 +40,12 @@ namespace Project.Core.Game.Scripts.GameInitiator {
 
 
         public Awaitable LoadEntryPoint(CancellationTokenSource cancellationTokenSource) {
-            LogService.LogTopic("LoadEntryPoint GameInitiator");
             IApplicationState initialState = ResolveInitialState();
             _applicationStateMachine.EnterInitialGameState(initialState, cancellationTokenSource);
             return AwaitableUtils.CompletedTask;
         }
 
         public Awaitable StartEntryPoint(CancellationTokenSource cancellationTokenSource) {
-            LogService.LogTopic("StartEntryPoint GameInitiator");
             _pixelCameraController.InitializeEntry();
             return AwaitableUtils.CompletedTask;
         }

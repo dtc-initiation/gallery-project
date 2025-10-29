@@ -24,10 +24,8 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.PixelCamera {
         }
         
         public void InitializeEntry() {
-            LogService.LogTopic("Initializing Entry : PixelCameraController");
             InitializeUPixelator();
             InitializePixelArtEdgeHighlights();
-            LogService.LogTopic("Initialized Entry : PixelCameraController");
         }
 
         private void InitializeUPixelator() {
