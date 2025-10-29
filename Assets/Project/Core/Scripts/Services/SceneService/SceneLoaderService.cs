@@ -3,6 +3,7 @@ using System.Threading;
 using Project.Core.Scripts.Services.InitiatorService.Base;
 using Project.Core.Scripts.Services.Logger.Base;
 using Project.Core.Scripts.Services.SceneService.Base;
+using Project.Core.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -61,11 +62,21 @@ namespace Project.Core.Scripts.Services.SceneService {
             var groupToLoad = _sceneDataCollections.GetSceneGroupByType(sceneGroupType);
             foreach (var sceneData in groupToLoad.sceneList) {
                 await TryLoadScene(sceneData.ScenePath, cancellationTokenSource);
+                await CheckAndSetActiveScene(sceneData, groupToLoad.activeSceneName, cancellationTokenSource);
                 await _sceneInitiatorService.InvokeLoadEntryPoint(sceneData,  cancellationTokenSource);
+                await _sceneInitiatorService.InvokeStartEntryPoint(sceneData, cancellationTokenSource);
             }
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(groupToLoad.activeSceneName));
+            LogService.LogTopic($"Setting active scene : {groupToLoad.activeSceneName}");
             _loadedSceneGroups.Add(sceneGroupType);
             _loadingSceneGroups.Remove(sceneGroupType);
+        }
+
+        private Awaitable CheckAndSetActiveScene(SceneData sceneData, string activeSceneName, CancellationTokenSource cancellationTokenSource) {
+            var isActiveScene = sceneData.SceneName == activeSceneName;
+            if (isActiveScene) {
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName(activeSceneName));
+            }
+            return AwaitableUtils.CompletedTask;
         }
 
         private async Awaitable<bool> TryLoadScene(string scenePath, CancellationTokenSource cancellationTokenSource) {
@@ -94,12 +105,12 @@ namespace Project.Core.Scripts.Services.SceneService {
         }
         
 
-        public async Awaitable StartSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
-            var groupToStart = _sceneDataCollections.GetSceneGroupByType(sceneGroupType);
-            foreach (var sceneData in groupToStart.sceneList) {
-                await _sceneInitiatorService.InvokeStartEntryPoint(sceneData, cancellationTokenSource);
-            }
-        }
+        // public async Awaitable StartSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
+        //     var groupToStart = _sceneDataCollections.GetSceneGroupByType(sceneGroupType);
+        //     foreach (var sceneData in groupToStart.sceneList) {
+        //         await _sceneInitiatorService.InvokeStartEntryPoint(sceneData, cancellationTokenSource);
+        //     }
+        // }
 
         public async Awaitable<bool> TryUnloadSceneGroup(SceneGroupType sceneGroupType, CancellationTokenSource cancellationTokenSource) {
             var isSceneGroupUnloaded = _loadedSceneGroups.Contains(sceneGroupType);
