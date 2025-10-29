@@ -276,12 +276,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7515866931673146894, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       insertIndex: -1
       addedObject: {fileID: 401865136}
-    - targetCorrespondingSourceObject: {fileID: 7515866931673146894, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 401865145}
-    - targetCorrespondingSourceObject: {fileID: 7515866931673146894, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 401865144}
     - targetCorrespondingSourceObject: {fileID: 9015083402153778041, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       insertIndex: -1
       addedObject: {fileID: 401865135}
@@ -359,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31aa367e721a4e9d9f7f451a542c0df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.Mvc.WorldCamera.WorldCameraView
-  mainCamera: {fileID: 401865143}
+  <Camera>k__BackingField: {fileID: 401865143}
   virtualCamera: {fileID: 401865131}
   follow: {fileID: 401865130}
   rotationComposer: {fileID: 401865129}
@@ -371,85 +365,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 141918003288587339, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
   m_PrefabInstance: {fileID: 401865128}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &401865144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401865134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af28796852870df4bb221daf94a3bd19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Abiogenesis3d.Shared::Abiogenesis3d.OrthographicSizeCorrection
-  cam: {fileID: 401865143}
-  screenHeight: 1080
-  myScriptSetsOrthoSize: 0
-  myScriptSetsOrthoSizeInEditMode: 0
-  standardOrthoSize: 5
---- !u!114 &401865145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 401865134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed3e21f4c81df341a0931065ac3332c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Abiogenesis3d.UPixelator::Abiogenesis3d.UPixelatorSnappable
-  isCamera: 1
-  snapPosition: 1
-  snapWithParent: 1
-  snapRotation: 0
-  rotateToCamForward: 0
-  isLocalRotation: 0
-  divisions360: 5
-  snapRotationAngles: {x: 11.25, y: 11.25, z: 11.25}
-  camRotationOffset: {x: 0, y: 0, z: 0}
-  snapLocalScale: 0
-  snapScaleValue: 0.05
-  lastSnappedPosition: {x: 0, y: 0, z: 0}
-  skippedSnappedPosition: {x: 0, y: 0, z: 0}
-  initialPosition: {x: 0, y: 0, z: 0}
-  smoothSnapUI: 1
-  nested: []
-  rectTransform: {fileID: 0}
-  canvas: {fileID: 0}
-  overlaySnappable: {fileID: 0}
---- !u!1 &1603236695
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1603236696}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1603236696
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603236695}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.91441, y: 0, z: 54.26254}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121895040
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +397,8 @@ MonoBehaviour:
   _initialStateConfig: {fileID: 11400000, guid: 4020047dd1536f64c9ff9cd1613634ae, type: 2}
   worldCameraView: {fileID: 401865136}
   uiCameraView: {fileID: 401865135}
+  _uPixelatorPrefab: {fileID: 4745948169140363300, guid: 81458f117e746b247abfacd189c73bae, type: 3}
+  _pixelArtEdgeHighlightsPrefab: {fileID: 3532894103475905541, guid: 46ea9a14ebe6c3f41b9640b7ae190f8c, type: 3}
 --- !u!4 &2121895042
 Transform:
   m_ObjectHideFlags: 0
@@ -504,4 +421,3 @@ SceneRoots:
   - {fileID: 315267618}
   - {fileID: 2121895042}
   - {fileID: 401865128}
-  - {fileID: 1603236696}
