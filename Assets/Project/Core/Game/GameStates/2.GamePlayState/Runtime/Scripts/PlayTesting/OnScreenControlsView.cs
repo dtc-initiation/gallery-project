@@ -5,6 +5,7 @@ namespace Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.PlayTest
         [SerializeField] private Canvas onScreenControlCanvas;
 
         public void InitializeEntryPoint(Camera uiCamera) {
+            onScreenControlCanvas.renderMode = RenderMode.ScreenSpaceCamera;
             onScreenControlCanvas.worldCamera = uiCamera;
             onScreenControlCanvas.enabled = true;
         }
