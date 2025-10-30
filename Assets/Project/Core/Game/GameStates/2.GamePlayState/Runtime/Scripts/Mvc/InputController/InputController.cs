@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.Commands.Camera;
 using Project.Core.Scripts.Services.CommandFactory.Base;
 using Project.Core.Scripts.Services.Logger.Base;
 using Project.Core.Scripts.Utils;
@@ -38,12 +39,12 @@ namespace Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.Mvc.Inpu
 
         private void OnLeftRotate(InputAction.CallbackContext context) {
             LogService.LogTopic("Rotating Left", LogTopic.Camera);
-            // TODO create command
+            _commandFactory.CreateVoidCommand<RotateCameraCommand>().Execute();
         }
 
         private void OnRightRotate(InputAction.CallbackContext context) {
             LogService.LogTopic("Rotating Right", LogTopic.Camera);
-            // TODO create command
+            _commandFactory.CreateVoidCommand<RotateCameraCommand>().Execute();
         }
 
         public async Awaitable WaitForAnyKeyPressed(CancellationTokenSource cancellationTokenSource) {

@@ -15,26 +15,12 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
             _updateSubscriptionService = updateSubscriptionService;
         }
 
-        public void StartFollowTarget(Transform targetTransform) {
-            LogService.LogTopic($"Start follow target {targetTransform.gameObject.name}", LogTopic.Camera);
-            _followTarget = targetTransform;
-            SetCameraRelativeToTarget(_followTarget);
-            _updateSubscriptionService.RegisterLateUpdatable(this, 100);
+        public void Rotate() {
             
         }
-
-        public void StopFollowTarget() {
-            LogService.LogTopic($"Stop follow target", LogTopic.Camera);
-            _updateSubscriptionService.UnregisterLateUpdatable(this);
-            _followTarget = null;
-        }
-
-        public void ManagedLateUpdate() { }
-
-        private void SetCameraRelativeToTarget(Transform targetTransform) {
-            _worldCameraView.SetPositionRelativeToTarget(targetTransform);
-            _worldCameraView.LookAtTarget(targetTransform);
-        }
         
+        public void ManagedLateUpdate() {
+            throw new System.NotImplementedException();
+        }
     }
 }
