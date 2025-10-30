@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Threading;
+using UnityEngine;
 
 namespace Project.Core.Scripts.Utils {
     public static class AwaitableUtils {
@@ -11,5 +13,12 @@ namespace Project.Core.Scripts.Utils {
                 return awaitable;
             }
         }
+
+        public static async Awaitable WaitUntil(Func<bool> condition, CancellationToken cancellationToken) {
+            while (!condition()) {
+                await Awaitable.NextFrameAsync(cancellationToken);
+            }
+        }
+        
     }
 }
