@@ -7,7 +7,6 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
     public class WorldCameraController : IWorldCameraController, ILateUpdatable {
         private readonly WorldCameraView _worldCameraView;
         private readonly IUpdateSubscriptionService  _updateSubscriptionService;
-        private Transform _followTarget;
 
         [Inject]
         public WorldCameraController(WorldCameraView worldCameraView, IUpdateSubscriptionService updateSubscriptionService) {
@@ -15,12 +14,18 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
             _updateSubscriptionService = updateSubscriptionService;
         }
 
-        public void Rotate() {
-            
-        }
-        
         public void ManagedLateUpdate() {
             throw new System.NotImplementedException();
+        }
+
+        public void Rotate(bool isLeft) {
+            // Get Current x & z is always 0
+            // Rotation is across the y-axis
+            // Snappable Vector
+            var cameraTransform = _worldCameraView.transform.parent.transform;
+            cameraTransform.Rotate(new Vector3(cameraTransform.rotation.x, cameraTransform.rotation.y - 45, 0));
+            // cameraTransform.rotation = Quaternion.Euler(cameraTransform.rotation.x, cameraTransform.eulerAngles.y, 0);
+            
         }
     }
 }
