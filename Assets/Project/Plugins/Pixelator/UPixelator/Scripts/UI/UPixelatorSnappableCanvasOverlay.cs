@@ -38,7 +38,8 @@ namespace Abiogenesis3d
                 return;
             }
 
-            uPixelator = FindObjectOfType<UPixelator>();
+            // uPixelator = FindObjectOfType<UPixelator>();
+            uPixelator = FindFirstObjectByType<UPixelator>();
             if (!uPixelator)
             {
                 Debug.LogWarning("No UPixelator found for " + name + ", disabling.");

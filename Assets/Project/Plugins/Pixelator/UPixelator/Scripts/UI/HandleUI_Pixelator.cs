@@ -19,7 +19,8 @@ namespace Abiogenesis3d.UPixelator_Demo
         public KeyCode toggleUPixelatorKey = KeyCode.Z;
         void Start()
         {
-            uPixelator = FindObjectOfType<UPixelator>(true);
+            // uPixelator = FindObjectOfType<UPixelator>(true);
+            uPixelator = FindFirstObjectByType<UPixelator>(FindObjectsInactive.Include);
             if (!uPixelator) return;
 
             uPixelatorEnabled.isOn = uPixelator.gameObject.activeInHierarchy;

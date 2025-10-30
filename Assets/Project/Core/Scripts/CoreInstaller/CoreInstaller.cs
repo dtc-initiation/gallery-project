@@ -1,6 +1,4 @@
-﻿using Project.Core.Scripts.Mvc.UICamera;
-using Project.Core.Scripts.Mvc.WorldCamera;
-using Project.Core.Scripts.Services.ApplicationStateMachine;
+﻿using Project.Core.Scripts.Services.ApplicationStateMachine;
 using Project.Core.Scripts.Services.CommandFactory;
 using Project.Core.Scripts.Services.InitiatorService;
 using Project.Core.Scripts.Services.Logger;
@@ -16,8 +14,7 @@ namespace Project.Core.Scripts.CoreInstaller {
     public class CoreInstaller : MonoInstaller {
         [SerializeField] private UpdateSubscriptionService updateSubscriptionService;
         [SerializeField] private SceneDataCollection sceneDataCollection;
-        [SerializeField] private WorldCameraView worldCameraView;
-        [SerializeField] private UICameraView uiCameraView;
+        
         
         public override void InstallBindings() {
             Container.BindInterfacesTo<UnityLogger>().AsSingle().NonLazy();
@@ -27,8 +24,7 @@ namespace Project.Core.Scripts.CoreInstaller {
             Container.BindInterfacesTo<CommandFactory>().AsSingle().CopyIntoAllSubContainers().NonLazy();
             Container.Bind<SceneDataCollection>().FromInstance(sceneDataCollection).AsSingle().NonLazy();
             Container.BindInterfacesTo<UpdateSubscriptionService>().FromInstance(updateSubscriptionService).AsSingle().NonLazy();
-            Container.BindInterfacesTo<WorldCameraController>().AsSingle().WithArguments(worldCameraView).NonLazy();
-            Container.BindInterfacesTo<UICameraController>().AsSingle().WithArguments(uiCameraView).NonLazy();
+            
         }
     }
 }

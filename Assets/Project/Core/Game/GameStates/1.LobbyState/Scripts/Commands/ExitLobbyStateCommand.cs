@@ -1,5 +1,4 @@
 ﻿using Project.Core.Game.GameStates._1.LobbyState.Scripts.Mvc;
-using Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc;
 using Project.Core.Scripts.Services.CommandFactory.Base;
 using Project.Core.Scripts.Services.Logger.Base;
 
@@ -12,7 +11,6 @@ namespace Project.Core.Game.GameStates._1.LobbyState.Scripts.Commands {
         }
 
         public void Execute() {
-            LogService.LogError("ExitLobbyStateCommand.Execute()");
             _lobbyButtonController.Dispose();
         }
 

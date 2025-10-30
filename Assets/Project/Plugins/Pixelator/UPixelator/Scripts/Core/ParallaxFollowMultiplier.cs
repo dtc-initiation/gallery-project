@@ -43,7 +43,8 @@ namespace Abiogenesis3d
         {
             if (!target) return;
 
-            if (!uPixelator) uPixelator = FindObjectOfType<UPixelator>();
+            // if (!uPixelator) uPixelator = FindObjectOfType<UPixelator>();
+            if (!uPixelator) uPixelator = FindFirstObjectByType<UPixelator>();
 
             if (reInitialize)
             {

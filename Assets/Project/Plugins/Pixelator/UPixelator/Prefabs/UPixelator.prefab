@@ -133,7 +133,7 @@ MonoBehaviour:
   graphicsFormat: 8
   pixelMultiplier: 3
   ditherRepeatSize: 8
-  lastScreenSize: {x: 640, y: 480}
+  lastScreenSize: {x: 1920, y: 1080}
   screenSize: {x: 0, y: 0}
   renderTextureSize: {x: 0, y: 0}
   screenHeight: 1080
@@ -232,7 +232,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 0
+  orthographic size: 15
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2

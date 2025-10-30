@@ -99,7 +99,8 @@ namespace Abiogenesis3d
 
         void OnEnable()
         {
-            var uPixelator = FindObjectOfType<UPixelator>();
+            // var uPixelator = FindObjectOfType<UPixelator>();
+            var uPixelator = FindFirstObjectByType<UPixelator>();
             if (uPixelator) uPixelator.isSnappablesDirty = true;
 
             rectTransform = GetComponent<RectTransform>();
@@ -263,7 +264,8 @@ namespace Abiogenesis3d
                     var parentSnappable = transform.GetComponentInParent<UPixelatorSnappable>();
                     if (!parentSnappable)
                     {
-                        var uPixelator = FindObjectOfType<UPixelator>();
+                        // var uPixelator = FindObjectOfType<UPixelator>();
+                        var uPixelator = FindFirstObjectByType<UPixelator>();
                         snapSize *= uPixelator.pixelMultiplier;
                     }
                 }
