@@ -240,10 +240,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1137813415}
+  - component: {fileID: 1137813416}
   - component: {fileID: 1137813414}
   - component: {fileID: 1137813413}
   - component: {fileID: 1137813412}
-  - component: {fileID: 1137813416}
   m_Layer: 5
   m_Name: OnScreenControlsCanvas
   m_TagString: Untagged
@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GamePlayStateAssembly::Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.PlayTesting.OnScreenControlsView
   onScreenControlCanvas: {fileID: 1137813414}
+  planeDistance: 90
 --- !u!1 &1584087791
 GameObject:
   m_ObjectHideFlags: 0
