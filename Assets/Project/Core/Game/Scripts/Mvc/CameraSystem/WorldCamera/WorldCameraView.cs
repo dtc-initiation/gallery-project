@@ -5,20 +5,15 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
     public class WorldCameraView : MonoBehaviour, ICameraView {
         [Header("Virtual Camera Components")]
         [field: SerializeField] public Camera Camera { get; set; }
-        [SerializeField] private CinemachineCamera virtualCamera;
-        [SerializeField] private CinemachineFollow follow;
 
         [Header("Camera Settings")] 
         [SerializeField] private Vector3 followOffset;
         [SerializeField] private float rotationDuration;
         
         public void SetPositionRelativeToTarget(Transform target) {
-            virtualCamera.Follow = target;
-            follow.FollowOffset = followOffset;
         }
 
         public void LookAtTarget(Transform target) {
-            virtualCamera.LookAt = target;
         }
 
 
