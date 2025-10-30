@@ -7,18 +7,14 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
         [field: SerializeField] public Camera Camera { get; set; }
         [SerializeField] private CinemachineCamera virtualCamera;
         [SerializeField] private CinemachineFollow follow;
-        [SerializeField] private CinemachineRotationComposer rotationComposer;
 
         [Header("Camera Settings")] 
         [SerializeField] private Vector3 followOffset;
-        [SerializeField] private Vector3 rotationTargetOffset;
-        [SerializeField] private Vector2 rotationTargetDamping;
+        [SerializeField] private float rotationDuration;
         
         public void SetPositionRelativeToTarget(Transform target) {
             virtualCamera.Follow = target;
             follow.FollowOffset = followOffset;
-            rotationComposer.TargetOffset = rotationTargetOffset;
-            rotationComposer.Damping = rotationTargetDamping;
         }
 
         public void LookAtTarget(Transform target) {
