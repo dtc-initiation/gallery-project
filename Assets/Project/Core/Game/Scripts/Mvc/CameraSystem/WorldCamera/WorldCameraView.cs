@@ -10,12 +10,12 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
         [SerializeField] private Vector3 followOffset;
         [SerializeField] private float rotationDuration;
         
-        public void SetPositionRelativeToTarget(Transform target) {
+        public float RotationDuration => rotationDuration;
+
+        public void Rotate(float angle) {
+            var parentTransform = transform.parent;
+            Debug.Log(angle);
+            parentTransform.Rotate(new Vector3(0, 1, 0), angle);
         }
-
-        public void LookAtTarget(Transform target) {
-        }
-
-
     }
 }

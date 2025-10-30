@@ -12,7 +12,6 @@
         }
         
         public void StartTimer() {
-            CurrentTime = InitialTime;
             if (!IsRunning) {
                 IsRunning = true;
             }
