@@ -411,27 +411,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9178884282494035077, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9230003
+      value: 0.9961947
       objectReference: {fileID: 0}
     - target: {fileID: 9178884282494035077, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.040299077
+      value: 0.08715578
       objectReference: {fileID: 0}
     - target: {fileID: 9178884282494035077, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.3823192
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9178884282494035077, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.016692424
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9178884282494035077, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9178884282494035077, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9178884282494035077, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.Mvc.WorldCamera.WorldCameraView
   <Camera>k__BackingField: {fileID: 401865143}
   followOffset: {x: 0, y: 100, z: 100}
-  rotationDuration: 0
+  rotationDuration: 0.2
 --- !u!20 &401865143 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 141918003288587339, guid: aa765d389b5025b42b0bd2cb19bd3487, type: 3}
