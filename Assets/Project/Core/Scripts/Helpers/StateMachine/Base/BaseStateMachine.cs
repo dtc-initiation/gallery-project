@@ -4,14 +4,14 @@ using Project.Core.Scripts.Helpers.StateMachine.Components;
 
 namespace Project.Core.Scripts.Helpers.StateMachine.Base {
     public abstract class BaseStateMachine<TState> : IStateMachine where TState : BaseState {
-        private StateNode _currentNode;
-        private Dictionary<Type, StateNode> _stateNodes;
+        public StateNode _currentNode;
+        private Dictionary<Type, StateNode> _stateNodes = new();
 
-        public abstract void Update();
-        public abstract void FixedUpdate();
-        public abstract void LateUpdate();
+        public virtual void Update() {}
+        public virtual void FixedUpdate() {}
+        public virtual void LateUpdate() {}
 
-        private ITransition GetTransition() {
+        public ITransition<TState> GetTransition() {
             var transitions = _currentNode.Transitions;
             foreach (var transition in transitions) {
                 if (transition.Condition.Evaluate()) {
@@ -26,7 +26,7 @@ namespace Project.Core.Scripts.Helpers.StateMachine.Base {
             _currentNode.State.OnEnter();
         }
         
-        private void ChangeState(TState state) {
+        public void ChangeState(TState state) {
             if (_currentNode.State == state) return;
             var previousState = _currentNode.State;
             var nextState = _stateNodes[state.GetType()].State;
@@ -36,7 +36,7 @@ namespace Project.Core.Scripts.Helpers.StateMachine.Base {
             _currentNode = _stateNodes[state.GetType()];
         }
 
-        private void AddTransition(TState fromState, TState toState, IPredicate condition) {
+        public void AddTransition(TState fromState, TState toState, IPredicate condition) {
             GetOrAddStateNode(fromState).AddTransition(GetOrAddStateNode(toState).State, condition);
         }
 
@@ -48,10 +48,10 @@ namespace Project.Core.Scripts.Helpers.StateMachine.Base {
             }
             return node;
         }
-        
-        private class StateNode {
+
+        public class StateNode {
             public TState State { get; }
-            public HashSet<ITransition> Transitions { get; }
+            public HashSet<ITransition<TState>> Transitions { get; }
 
             public StateNode(TState state) {
                 State = state;
@@ -59,7 +59,7 @@ namespace Project.Core.Scripts.Helpers.StateMachine.Base {
             }
 
             public void AddTransition(TState to, IPredicate condition) {
-                Transitions.Add(new Transition(to, condition));
+                Transitions.Add(new Transition<TState>(to, condition));
             }
             
         }
