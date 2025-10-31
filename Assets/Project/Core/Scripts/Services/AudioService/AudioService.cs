@@ -12,7 +12,7 @@ namespace Project.Core.Scripts.Services.AudioService {
         private Dictionary<AudioChannel, Dictionary<string, AudioClip>> _audioLookup = new();
         private Dictionary<AudioChannel, AudioSource> _audioSourceLookup = new();
 
-        public void InitEntryPoint() {
+        public void InitializeService() {
             _audioSourceLookup.Add(AudioChannel.Master, masterAudioSource);
             _audioSourceLookup.Add(AudioChannel.Fx, fxAudioSource);
             _audioSourceLookup.Add(AudioChannel.Music, musicAudioSource);

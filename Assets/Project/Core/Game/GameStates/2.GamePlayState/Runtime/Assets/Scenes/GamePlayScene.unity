@@ -1191,6 +1191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GamePlayStateAssembly::Project.Core.Game.GameStates._2.GamePlayState.Scripts.Initiator.GamePlayInstaller
   _onScreenControlView: {fileID: 1137813416}
+  _gamePlayAudioScriptableObject: {fileID: 11400000, guid: f8c993bb50ef46c46bde585a0fbe6be8, type: 2}
 --- !u!1 &543212308
 GameObject:
   m_ObjectHideFlags: 0

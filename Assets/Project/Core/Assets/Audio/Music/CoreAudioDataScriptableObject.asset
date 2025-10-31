@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CoreAudioDataScriptableObject
   m_EditorClassIdentifier: CoreAssembly::Project.Core.Scripts.Services.AudioService.AudioDataScriptableObject
   AudioDatas:
-  - AudioName: Backgound
+  - AudioName: BackgoundMusic
     AudioChannel: 2
     AudioClip: {fileID: 8300000, guid: 27567254d44c3b14c989b264a172430d, type: 3}

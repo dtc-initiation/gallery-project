@@ -1,4 +1,5 @@
 ﻿using Project.Core.Scripts.Services.ApplicationStateMachine;
+using Project.Core.Scripts.Services.AudioService;
 using Project.Core.Scripts.Services.CommandFactory;
 using Project.Core.Scripts.Services.InitiatorService;
 using Project.Core.Scripts.Services.Logger;
@@ -13,6 +14,7 @@ using Zenject;
 namespace Project.Core.Scripts.CoreInstaller {
     public class CoreInstaller : MonoInstaller {
         [SerializeField] private UpdateSubscriptionService updateSubscriptionService;
+        [SerializeField] private AudioService _audioService;
         [SerializeField] private SceneDataCollection sceneDataCollection;
         
         public override void InstallBindings() {
@@ -23,6 +25,7 @@ namespace Project.Core.Scripts.CoreInstaller {
             Container.BindInterfacesTo<CommandFactory>().AsSingle().CopyIntoAllSubContainers().NonLazy();
             Container.Bind<SceneDataCollection>().FromInstance(sceneDataCollection).AsSingle().NonLazy();
             Container.BindInterfacesTo<UpdateSubscriptionService>().FromInstance(updateSubscriptionService).AsSingle().NonLazy();
+            Container.BindInterfacesTo<AudioService>().FromInstance(_audioService).AsSingle().NonLazy();
             Container.Bind<GameInputActions>().AsSingle().NonLazy();
             
         }
