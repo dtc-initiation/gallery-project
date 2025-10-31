@@ -17,14 +17,11 @@ namespace Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.Mvc.Inpu
         }
         
         public void EnableInput() {
-            _gameInputActions.Enable();
-            _gameInputActions.Default.Disable();
-            _gameInputActions.UI.Disable();
             _gameInputActions.Camera.Enable();
         }
 
         public void DisableInput() {
-            _gameInputActions.Disable();
+            _gameInputActions.Camera.Disable();
         }
 
         public void RegisterInputListeners() {
@@ -38,17 +35,17 @@ namespace Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.Mvc.Inpu
         }
 
         private void OnLeftRotate(InputAction.CallbackContext context) {
-            LogService.LogTopic("Rotating Left", LogTopic.Camera);
-            _commandFactory.CreateVoidCommand<RotateCameraCommand>().Execute();
+            _commandFactory.CreateVoidCommand<RotateCameraCommand>().SetEnterData(new CameraRotationEnterData(true)).Execute();
         }
 
         private void OnRightRotate(InputAction.CallbackContext context) {
-            LogService.LogTopic("Rotating Right", LogTopic.Camera);
-            _commandFactory.CreateVoidCommand<RotateCameraCommand>().Execute();
+            _commandFactory.CreateVoidCommand<RotateCameraCommand>().SetEnterData(new CameraRotationEnterData(false)).Execute();
         }
 
         public async Awaitable WaitForAnyKeyPressed(CancellationTokenSource cancellationTokenSource) {
+            LogService.LogTopic("Press Any Button!", LogTopic.Camera);
             await AwaitableUtils.WaitUntil(AnyButtonPressed, cancellationTokenSource.Token);
+            LogService.LogTopic("Any button pressed", LogTopic.Camera);
         }
 
         private bool AnyButtonPressed() {

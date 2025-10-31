@@ -15,7 +15,6 @@ namespace Project.Core.Scripts.CoreInstaller {
         [SerializeField] private UpdateSubscriptionService updateSubscriptionService;
         [SerializeField] private SceneDataCollection sceneDataCollection;
         
-        
         public override void InstallBindings() {
             Container.BindInterfacesTo<UnityLogger>().AsSingle().NonLazy();
             Container.BindInterfacesTo<SceneLoaderService>().AsSingle().NonLazy();
@@ -24,6 +23,7 @@ namespace Project.Core.Scripts.CoreInstaller {
             Container.BindInterfacesTo<CommandFactory>().AsSingle().CopyIntoAllSubContainers().NonLazy();
             Container.Bind<SceneDataCollection>().FromInstance(sceneDataCollection).AsSingle().NonLazy();
             Container.BindInterfacesTo<UpdateSubscriptionService>().FromInstance(updateSubscriptionService).AsSingle().NonLazy();
+            Container.Bind<GameInputActions>().AsSingle().NonLazy();
             
         }
     }

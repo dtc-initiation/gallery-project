@@ -2,6 +2,6 @@
 
 namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
     public interface IWorldCameraController {
-        void Rotate();
+        void Rotate(bool isLeft);
     }
 }

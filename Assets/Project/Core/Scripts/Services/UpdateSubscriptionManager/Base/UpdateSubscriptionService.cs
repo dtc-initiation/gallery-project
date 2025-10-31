@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Project.Core.Scripts.Services.UpdateSubscriptionManager.Base {
     public class UpdateSubscriptionService : MonoBehaviour, IUpdateSubscriptionService {
+        [SerializeField] public int UpdateLength;
+        [SerializeField] public int LateUpdateLength;
+        [SerializeField] public int FixedUpdateLength;
+        
         private readonly List<UpdatableEntry> _updateObservers = new ();
         private readonly List<UpdatableEntry> _addPendingUpdateObservers = new();
         private readonly List<IUpdatable> _removePendingUpdateObservers = new ();
@@ -53,6 +57,8 @@ namespace Project.Core.Scripts.Services.UpdateSubscriptionManager.Base {
                 _addPendingUpdateObservers.Clear();
                 _updateObservers.Sort(_updatePriorityComparer);
             }
+            
+            UpdateLength = _updateObservers.Count;
         }
 
         private void ProcessPendingLateUpdates() {
@@ -66,6 +72,7 @@ namespace Project.Core.Scripts.Services.UpdateSubscriptionManager.Base {
                 _addPendingLateUpdateObservers.Clear();
                 _lateUpdateObservers.Sort(_lateUpdatePriorityComparer);
             }
+            LateUpdateLength = _lateUpdateObservers.Count;
         }
 
         private void ProcessPendingFixedUpdates() {
@@ -79,6 +86,7 @@ namespace Project.Core.Scripts.Services.UpdateSubscriptionManager.Base {
                 _addPendingFixedUpdateObservers.Clear();
                 _fixedUpdateObservers.Sort(_fixedUpdatePriorityComparer);
             }
+            FixedUpdateLength = _fixedUpdateObservers.Count;
         }
         
         
