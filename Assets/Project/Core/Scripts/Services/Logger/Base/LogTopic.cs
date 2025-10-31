@@ -4,6 +4,7 @@
         Core,
         Camera,
         GamePlay,
+        Audio,
         Physics,
         UI
     }
