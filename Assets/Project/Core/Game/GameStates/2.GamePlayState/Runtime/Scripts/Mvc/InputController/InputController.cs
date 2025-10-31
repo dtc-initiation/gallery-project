@@ -35,12 +35,10 @@ namespace Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.Mvc.Inpu
         }
 
         private void OnLeftRotate(InputAction.CallbackContext context) {
-            // LogService.LogTopic("Rotating Left", LogTopic.Camera);
             _commandFactory.CreateVoidCommand<RotateCameraCommand>().SetEnterData(new CameraRotationEnterData(true)).Execute();
         }
 
         private void OnRightRotate(InputAction.CallbackContext context) {
-            // LogService.LogTopic("Rotating Right", LogTopic.Camera);
             _commandFactory.CreateVoidCommand<RotateCameraCommand>().SetEnterData(new CameraRotationEnterData(false)).Execute();
         }
 
