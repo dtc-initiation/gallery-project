@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e85424dfea4f248c52d006a87822de, type: 3}
   m_Name: InitialStateConfig
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Scripts.Services.ApplicationStateMachine.Base.InitialStateConfig
-  initialStateType: 2
+  initialStateType: 0

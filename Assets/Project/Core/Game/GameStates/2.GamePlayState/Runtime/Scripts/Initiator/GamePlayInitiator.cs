@@ -25,8 +25,8 @@ namespace Project.Core.Game.GameStates._2.GamePlayState.Runtime.Scripts.Initiato
             await _commandFactory.CreateAsyncVoidCommand<EnterGamePlayStateCommand>().Execute(cancellationTokenSource);
         }
 
-        public Awaitable StartEntryPoint(CancellationTokenSource cancellationTokenSource) {
-            return AwaitableUtils.CompletedTask;
+        public async Awaitable StartEntryPoint(CancellationTokenSource cancellationTokenSource) {
+            await _commandFactory.CreateAsyncVoidCommand<StartGamePlayStateCommand>().Execute(cancellationTokenSource);
         }
 
         public Awaitable UnloadExitPoint(CancellationTokenSource cancellationTokenSource) {

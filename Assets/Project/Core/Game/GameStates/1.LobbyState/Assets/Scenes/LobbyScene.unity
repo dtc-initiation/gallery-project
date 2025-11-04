@@ -311,6 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Core.Game.GameStates._1.MainMenuState.Scripts.Mvc.LobbyCanvasView
   lobbyCanvas: {fileID: 1122648081}
+  planeDistance: 90
 --- !u!114 &1122648079
 MonoBehaviour:
   m_ObjectHideFlags: 0

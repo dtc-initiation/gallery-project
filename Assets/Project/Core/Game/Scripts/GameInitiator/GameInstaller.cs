@@ -21,7 +21,7 @@ namespace Project.Core.Game.Scripts.GameInitiator {
             Container.BindFactory<GamePlayState, GamePlayState.Factory>();
             
             Container.BindInterfacesTo<WorldCameraController>().AsSingle().WithArguments(worldCameraView).NonLazy();
-            Container.BindInterfacesTo<UICameraController>().AsSingle().WithArguments(uiCameraView).NonLazy();
+            Container.BindInterfacesTo<UICameraController>().AsSingle().WithArguments(uiCameraView, worldCameraView).NonLazy();
             Container.BindInterfacesTo<PixelCameraController>().AsSingle().WithArguments(worldCameraView, uiCameraView, _uPixelatorPrefab, _pixelArtEdgeHighlightsPrefab).NonLazy();
         }
     }
