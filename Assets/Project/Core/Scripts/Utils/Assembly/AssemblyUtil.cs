@@ -59,6 +59,18 @@ namespace Project.Core.Scripts.Utils.AssemblyUtils {
             assemblyToTypes.TryGetValue(AssemblyType.AssemblyCSharpFirstPass, out var assemblyCharpFirstPassTypes);
             AddTypesFromAssembly(assemblyCharpFirstPassTypes, interfaceType, typeList);
             
+            assemblyToTypes.TryGetValue(AssemblyType.AssemblyCore, out var assemblyCore);
+            AddTypesFromAssembly(assemblyCore, interfaceType, typeList);
+            
+            assemblyToTypes.TryGetValue(AssemblyType.AssemblyGame, out var assemblyGame);
+            AddTypesFromAssembly(assemblyGame, interfaceType, typeList);
+            
+            assemblyToTypes.TryGetValue(AssemblyType.AssemblyLobby, out var assemblyLobby);
+            AddTypesFromAssembly(assemblyLobby, interfaceType, typeList);
+
+            assemblyToTypes.TryGetValue(AssemblyType.AssemblyGamePlay, out var assemblyGamePlay);
+            AddTypesFromAssembly(assemblyGamePlay, interfaceType, typeList);
+            
             return typeList;
 
         }
