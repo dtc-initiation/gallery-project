@@ -17,7 +17,6 @@ namespace Project.Core.Scripts.Utils.AssemblyUtils {
         }
 
         private static AssemblyType? GetAssemblyType(string assemblyName) {
-            LogService.LogError($"Assembly Name : {assemblyName}");
             return assemblyName switch {
                 "Assembly-CSharp" => AssemblyType.AssemblyCSharp,
                 "Assembly-CHsarp-Editor" => AssemblyType.AssemblyCSharpEditor,
