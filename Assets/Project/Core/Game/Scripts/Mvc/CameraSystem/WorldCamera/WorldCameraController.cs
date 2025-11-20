@@ -56,15 +56,10 @@ namespace Project.Core.Game.Scripts.Mvc.CameraSystem.WorldCamera {
 
         public void Rotate(bool isLeft) {
             if (!_countDownTimer.IsRunning) {
-                Debug.Log("Started Rotate Timer");
                 _countDownTimer.ResetTimer();
                 _countDownTimer.StartTimer();
                 _isLeft = isLeft;
-                
-                Debug.Log("IsLeft: " + _isLeft);
                 _worldCameraStateMachine.Update();
-                Debug.Log(_worldCameraStateMachine._currentNode.State);
-                Debug.Log(_worldCameraStateMachine._currentNode.State.Direction);
             }
         }
     }
